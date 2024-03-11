@@ -1,2 +1,83 @@
-# The pool of tears
+# Neyman-Pearson Lemma 
+
+As we learned from our work in the previous lesson, whenever we perform a hypothesis test, we should make sure that the test we are conducting has sufficient power to detect a meaningful difference from the null hypothesis. That said, how can we be sure that the T-test for a mean \(\mu\) is the "most powerful" test we could use? Is there instead a K-test or a V-test or you-name-the-letter-of-the-alphabet-test that would provide us with more power? A very important result, known as the Neyman-Pearson Lemma, will reassure us that each of the tests we learned in Section 7 is the most powerful test for testing statistical hypotheses about the parameter under the assumed probability distribution. Before we can present the lemma, however, we need to:
+
+1. Define some notation
+2. Learn the distinction between simple and composite hypotheses
+3. Define what it means to have a best critical region of size \(\alpha\)
+
+**Notation**
+
+If \( X_1, X_2, ..., X_n \) is a random sample of size \( n \) from a distribution with probability density (or mass) function \( f(x; \theta) \), then the joint probability density (or mass) function of \( X_1, X_2, ..., X_n \) is denoted by the likelihood function \( L(\theta) \). That is, the joint p.d.f. or p.m.f. is:
+
+\[ L(\theta) = f(x_1, x_2, ..., x_n; \theta) \]
+
+Note that for the sake of ease, we drop the reference to the sample \( X_1, X_2, ..., X_n \) in using \( L(\theta) \) as the notation for the likelihood function. We'll want to keep in mind though that the likelihood \( L(\theta) \) still depends on the sample data.
+
+**Simple hypothesis**
+
+If a random sample is taken from a distribution with parameter \( \theta \), a hypothesis is said to be a simple hypothesis if the hypothesis uniquely specifies the distribution of the population from which the sample is taken. Any hypothesis that is not a simple hypothesis is called a composite hypothesis.
+
+**Example 1**
+
+Suppose \( X_1, X_2, ..., X_n \) is a random sample from an exponential distribution with parameter \( \lambda \). Is the hypothesis \( \lambda = \lambda_0 \) a simple or a composite hypothesis?
+
+**Answer:**
+The p.d.f. of an exponential random variable is:
+
+\[ f(x; \lambda) = \lambda e^{-\lambda x} \]
+
+for \( x \geq 0 \). Under the hypothesis \( \lambda = \lambda_0 \), the p.d.f. of an exponential random variable is:
+
+\[ f(x; \lambda_0) = \lambda_0 e^{-\lambda_0 x} \]
+
+for \( x \geq 0 \). Because we can uniquely specify the p.d.f. under the hypothesis \( \lambda = \lambda_0 \), the hypothesis is a simple hypothesis.
+
+
+**Example 2: Watercolor**
+
+Suppose \(X\) is a random sample from an exponential distribution with parameter \(\theta\). Is the hypothesis \(\theta > \theta_0\) a simple or a composite hypothesis?
+
+**Answer:**
+Again, the p.d.f. of an exponential random variable is:
+
+\[ f(x; \theta) = \theta e^{-\theta x} \]
+
+for \(x \geq 0\). Under the hypothesis \(\theta > \theta_0\), the p.d.f. of an exponential random variable could be:
+
+\[ f(x; \theta) = \theta e^{-\theta x} \]
+
+for \(x \geq 0\), or it could be:
+
+\[ f(x; \theta) = \theta e^{-\theta x} \]
+
+for \(x \geq 0\), or it could be any of an infinite number of possible exponential probability density functions. Because the p.d.f. is not uniquely specified under the hypothesis \(\theta > \theta_0\), the hypothesis is a composite hypothesis.
+
+**Example 3: Abstract Painting**
+
+Suppose \(X\) is a random sample from a normal distribution with mean \(\mu\) and unknown variance \(\sigma^2\). Is the hypothesis \(\mu = \mu_0\) a simple or a composite hypothesis?
+
+**Answer:**
+The p.d.f. of a normal random variable is:
+
+\[ f(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
+
+for \(-\infty < x < \infty\), and \(-\infty < \mu < \infty\), and \(0 < \sigma < \infty\). Under the hypothesis \(\mu = \mu_0\), the p.d.f. of a normal random variable is:
+
+\[ f(x; \mu_0, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu_0)^2}{2\sigma^2}} \]
+
+for \(-\infty < x < \infty\), and \(-\infty < \mu_0 < \infty\), and \(0 < \sigma < \infty\). In this case, the mean parameter \(\mu\) is uniquely specified in the p.d.f., but the variance \(\sigma^2\) is not. Therefore, the hypothesis \(\mu = \mu_0\) is a composite hypothesis.
+
+**Size of \(\alpha\)**
+
+Consider the test of the simple null hypothesis \(\theta = \theta_0\) against the simple alternative hypothesis \(\theta = \theta_1\). Let \(C\) and \(D\) be critical regions of size \(\alpha\), that is, let:
+
+\[ P(X \in C | \theta = \theta_1) = \alpha \] and 
+\[ P(X \in D | \theta = \theta_1) = \alpha \]
+
+Then, \(C\) is a best critical region of size \(\alpha\) if the power of the test at \(\theta_1\) is the largest among all possible hypothesis tests. More formally, \(C\) is the best critical region of size \(\alpha\) if, for every other critical region \(D\) of size \(\alpha\), we have:
+
+\[ P(X \in C | \theta = \theta_1) \geq P(X \in D | \theta = \theta_1) \]
+
+That is, \(C\) is the best critical region of size \(\alpha\) if the power of \(C\) is at least as great as the power of every other critical region \(D\) of size \(\alpha\). We say that \(C\) is the most powerful size \(\alpha\) test.
 

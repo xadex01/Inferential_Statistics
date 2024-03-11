@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Neyman-Pearson Lemma | Inferential Statistics</title>
+  <meta name="description" content="Chapter 2 Neyman-Pearson Lemma | Inferential Statistics" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Neyman-Pearson Lemma | Inferential Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Neyman-Pearson Lemma | Inferential Statistics" />
+  
+  
+  
+
+<meta name="author" content="AbdulHafiz Abba" />
+
+
+<meta name="date" content="2024-03-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Inferential Statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Point Estimation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#definitions"><i class="fa fa-check"></i><b>1.1.1</b> Definitions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2</b> Maximum Likelihood Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="neyman-pearson-lemma.html"><a href="neyman-pearson-lemma.html"><i class="fa fa-check"></i><b>2</b> Neyman-Pearson Lemma</a></li>
+<li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Inferential Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="neyman-pearson-lemma" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Neyman-Pearson Lemma<a href="neyman-pearson-lemma.html#neyman-pearson-lemma" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As we learned from our work in the previous lesson, whenever we perform a hypothesis test, we should make sure that the test we are conducting has sufficient power to detect a meaningful difference from the null hypothesis. That said, how can we be sure that the T-test for a mean <span class="math inline">\(\mu\)</span> is the “most powerful” test we could use? Is there instead a K-test or a V-test or you-name-the-letter-of-the-alphabet-test that would provide us with more power? A very important result, known as the Neyman-Pearson Lemma, will reassure us that each of the tests we learned in Section 7 is the most powerful test for testing statistical hypotheses about the parameter under the assumed probability distribution. Before we can present the lemma, however, we need to:</p>
+<ol style="list-style-type: decimal">
+<li>Define some notation</li>
+<li>Learn the distinction between simple and composite hypotheses</li>
+<li>Define what it means to have a best critical region of size <span class="math inline">\(\alpha\)</span></li>
+</ol>
+<p><strong>Notation</strong></p>
+<p>If <span class="math inline">\(X_1, X_2, ..., X_n\)</span> is a random sample of size <span class="math inline">\(n\)</span> from a distribution with probability density (or mass) function <span class="math inline">\(f(x; \theta)\)</span>, then the joint probability density (or mass) function of <span class="math inline">\(X_1, X_2, ..., X_n\)</span> is denoted by the likelihood function <span class="math inline">\(L(\theta)\)</span>. That is, the joint p.d.f. or p.m.f. is:</p>
+<p><span class="math display">\[ L(\theta) = f(x_1, x_2, ..., x_n; \theta) \]</span></p>
+<p>Note that for the sake of ease, we drop the reference to the sample <span class="math inline">\(X_1, X_2, ..., X_n\)</span> in using <span class="math inline">\(L(\theta)\)</span> as the notation for the likelihood function. We’ll want to keep in mind though that the likelihood <span class="math inline">\(L(\theta)\)</span> still depends on the sample data.</p>
+<p><strong>Simple hypothesis</strong></p>
+<p>If a random sample is taken from a distribution with parameter <span class="math inline">\(\theta\)</span>, a hypothesis is said to be a simple hypothesis if the hypothesis uniquely specifies the distribution of the population from which the sample is taken. Any hypothesis that is not a simple hypothesis is called a composite hypothesis.</p>
+<p><strong>Example 1</strong></p>
+<p>Suppose <span class="math inline">\(X_1, X_2, ..., X_n\)</span> is a random sample from an exponential distribution with parameter <span class="math inline">\(\lambda\)</span>. Is the hypothesis <span class="math inline">\(\lambda = \lambda_0\)</span> a simple or a composite hypothesis?</p>
+<p><strong>Answer:</strong>
+The p.d.f. of an exponential random variable is:</p>
+<p><span class="math display">\[ f(x; \lambda) = \lambda e^{-\lambda x} \]</span></p>
+<p>for <span class="math inline">\(x \geq 0\)</span>. Under the hypothesis <span class="math inline">\(\lambda = \lambda_0\)</span>, the p.d.f. of an exponential random variable is:</p>
+<p><span class="math display">\[ f(x; \lambda_0) = \lambda_0 e^{-\lambda_0 x} \]</span></p>
+<p>for <span class="math inline">\(x \geq 0\)</span>. Because we can uniquely specify the p.d.f. under the hypothesis <span class="math inline">\(\lambda = \lambda_0\)</span>, the hypothesis is a simple hypothesis.</p>
+<p><strong>Example 2: Watercolor</strong></p>
+<p>Suppose <span class="math inline">\(X\)</span> is a random sample from an exponential distribution with parameter <span class="math inline">\(\theta\)</span>. Is the hypothesis <span class="math inline">\(\theta &gt; \theta_0\)</span> a simple or a composite hypothesis?</p>
+<p><strong>Answer:</strong>
+Again, the p.d.f. of an exponential random variable is:</p>
+<p><span class="math display">\[ f(x; \theta) = \theta e^{-\theta x} \]</span></p>
+<p>for <span class="math inline">\(x \geq 0\)</span>. Under the hypothesis <span class="math inline">\(\theta &gt; \theta_0\)</span>, the p.d.f. of an exponential random variable could be:</p>
+<p><span class="math display">\[ f(x; \theta) = \theta e^{-\theta x} \]</span></p>
+<p>for <span class="math inline">\(x \geq 0\)</span>, or it could be:</p>
+<p><span class="math display">\[ f(x; \theta) = \theta e^{-\theta x} \]</span></p>
+<p>for <span class="math inline">\(x \geq 0\)</span>, or it could be any of an infinite number of possible exponential probability density functions. Because the p.d.f. is not uniquely specified under the hypothesis <span class="math inline">\(\theta &gt; \theta_0\)</span>, the hypothesis is a composite hypothesis.</p>
+<p><strong>Example 3: Abstract Painting</strong></p>
+<p>Suppose <span class="math inline">\(X\)</span> is a random sample from a normal distribution with mean <span class="math inline">\(\mu\)</span> and unknown variance <span class="math inline">\(\sigma^2\)</span>. Is the hypothesis <span class="math inline">\(\mu = \mu_0\)</span> a simple or a composite hypothesis?</p>
+<p><strong>Answer:</strong>
+The p.d.f. of a normal random variable is:</p>
+<p><span class="math display">\[ f(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]</span></p>
+<p>for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, and <span class="math inline">\(-\infty &lt; \mu &lt; \infty\)</span>, and <span class="math inline">\(0 &lt; \sigma &lt; \infty\)</span>. Under the hypothesis <span class="math inline">\(\mu = \mu_0\)</span>, the p.d.f. of a normal random variable is:</p>
+<p><span class="math display">\[ f(x; \mu_0, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu_0)^2}{2\sigma^2}} \]</span></p>
+<p>for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, and <span class="math inline">\(-\infty &lt; \mu_0 &lt; \infty\)</span>, and <span class="math inline">\(0 &lt; \sigma &lt; \infty\)</span>. In this case, the mean parameter <span class="math inline">\(\mu\)</span> is uniquely specified in the p.d.f., but the variance <span class="math inline">\(\sigma^2\)</span> is not. Therefore, the hypothesis <span class="math inline">\(\mu = \mu_0\)</span> is a composite hypothesis.</p>
+<p><strong>Size of <span class="math inline">\(\alpha\)</span></strong></p>
+<p>Consider the test of the simple null hypothesis <span class="math inline">\(\theta = \theta_0\)</span> against the simple alternative hypothesis <span class="math inline">\(\theta = \theta_1\)</span>. Let <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> be critical regions of size <span class="math inline">\(\alpha\)</span>, that is, let:</p>
+<p><span class="math display">\[ P(X \in C | \theta = \theta_1) = \alpha \]</span> and
+<span class="math display">\[ P(X \in D | \theta = \theta_1) = \alpha \]</span></p>
+<p>Then, <span class="math inline">\(C\)</span> is a best critical region of size <span class="math inline">\(\alpha\)</span> if the power of the test at <span class="math inline">\(\theta_1\)</span> is the largest among all possible hypothesis tests. More formally, <span class="math inline">\(C\)</span> is the best critical region of size <span class="math inline">\(\alpha\)</span> if, for every other critical region <span class="math inline">\(D\)</span> of size <span class="math inline">\(\alpha\)</span>, we have:</p>
+<p><span class="math display">\[ P(X \in C | \theta = \theta_1) \geq P(X \in D | \theta = \theta_1) \]</span></p>
+<p>That is, <span class="math inline">\(C\)</span> is the best critical region of size <span class="math inline">\(\alpha\)</span> if the power of <span class="math inline">\(C\)</span> is at least as great as the power of every other critical region <span class="math inline">\(D\)</span> of size <span class="math inline">\(\alpha\)</span>. We say that <span class="math inline">\(C\)</span> is the most powerful size <span class="math inline">\(\alpha\)</span> test.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/xadex01/Inferential_Statistics/edit/main/02-tears.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/xadex01/Inferential_Statistics/blob/main/02-tears.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
