@@ -5,5 +5,91 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
 
-# Down the rabbit-hole
+# Point Estimation
 
+## Overview
+
+Suppose we have an unknown population parameter, such as a population mean \( \mu \) or a population proportion \( p \), which we'd like to estimate. For example, suppose we are interested in estimating:
+
+- \( p \): the (unknown) proportion of American college students, 18-24, who have a smartphone
+- \( \mu \): the (unknown) mean number of days it takes Alzheimer's patients to achieve certain milestones
+
+In either case, we can't possibly survey the entire population. That is, we can't survey all American college students between the ages of 18 and 24. Nor can we survey all patients with Alzheimer's disease. So, of course, we take a random sample from the population and use the resulting data to estimate the value of the population parameter. However, we want the estimate to be "good" in some way.
+
+In this lesson, we'll learn two methods, namely the method of maximum likelihood and the method of moments, for deriving formulas for "good" point estimates for population parameters. We'll also learn one way of assessing whether a point estimate is "good." We'll do that by defining what it means for an estimate to be unbiased.
+
+### Definitions
+
+We'll start the lesson with some formal definitions. In doing so, recall that we denote the \( n \) random variables arising from a random sample as subscripted uppercase letters: \( X_1, X_2, \ldots, X_n \). The corresponding observed values of a specific random sample are then denoted as subscripted lowercase letters: \( x_1, x_2, \ldots, x_n \).
+
+**Parameter Space**
+
+The range of possible values of the parameter \( \theta \) is called the parameter space \( \Omega \) (the Greek letter "omega"). For example, if \( \mu \) denotes the mean grade point average of all college students, then the parameter space (assuming a 4-point grading scale) is:
+\[ \Omega = \{ \mu : 0 \leq \mu \leq 4 \} \]
+And, if \( p \) denotes the proportion of students who smoke cigarettes, then the parameter space is:
+\[ \Omega = \{ p : 0 \leq p \leq 1 \} \]
+
+**Point Estimator**
+
+The function of \( X_1, X_2, \ldots, X_n \), that is, the statistic \( u = (X_1, X_2, \ldots, X_n) \) used to estimate \( \theta \) is called a point estimator of \( \theta \). For example, the function:
+\[ \bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i \]
+is a point estimator of the population mean \( \mu \). The function:
+\[ \hat{p} = \frac{1}{n} \sum_{i=1}^{n} X_i \]
+(where \( X_i = 0 \) or 1) is a point estimator of the population proportion \( p \). And, the function:
+\[ S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2 \]
+is a point estimator of the population variance \( \sigma^2 \).
+
+**Point Estimate**
+
+The function \( u(x_1, x_2, \ldots, x_n) \) computed from a set of data is an observed point estimate of \( \theta \). For example, if \( x_i \) are the observed grade point averages of a sample of 88 students, then:
+\[ \bar{x} = \frac{1}{88} \sum_{i=1}^{88} x_i = 3.12 \]
+is a point estimate of \( \mu \), the mean grade point average of all the students in the population. And, if \( x_i = 0 \) if a student has no tattoo, and \( x_i = 1 \) if a student has a tattoo, then:
+\[ \hat{p} = 0.11 \]
+is a point estimate of \( p \), the proportion of all students in the population who have a tattoo.
+
+Now, with the above definitions aside, let's go learn about the method of maximum likelihood.
+
+## Maximum Likelihood Estimation
+
+**Statement of the Problem**
+
+Suppose we have a random sample \(X_1, X_2, ..., X_n\) whose assumed probability distribution depends on some unknown parameter \(\theta\). Our primary goal here will be to find a point estimator \(u(X_1, X_2, ..., X_n)\), such that \(u(x_1, x_2, ..., x_n)\) is a "good" point estimate of \(\theta\), where \(x_1, x_2, ..., x_n\) are the observed values of the random sample. For example, if we plan to take a random sample \(X_1, X_2, ..., X_n\) for which the \(X_i\) are assumed to be normally distributed with mean \(\mu\) and variance \(\sigma^2\), then our goal will be to find a good estimate of \(\mu\), say, using the data \(x_1, x_2, ..., x_n\) that we obtained from our specific random sample.
+
+**The Basic Idea**
+
+It seems reasonable that a good estimate of the unknown parameter \(\theta\) would be the value of \(\theta\) that maximizes the probability, or rather, the likelihood, of getting the data we observed. So, that is, in a nutshell, the idea behind the method of maximum likelihood estimation. But how would we implement the method in practice? Well, suppose we have a random sample \(X_1, X_2, ..., X_n\) for which the probability density (or mass) function of each \(X_i\) is \(f(x_i;\theta)\). Then, the joint probability mass (or density) function of \(X_1, X_2, ..., X_n\), which we'll (not so arbitrarily) call \(L(\theta)\) is:
+
+\[L(\theta) = P(X_1=x_1, X_2=x_2, ..., X_n=x_n) = f(x_1;\theta) \cdot f(x_2;\theta) \cdot ... \cdot f(x_n;\theta) = \prod_{i=1}^n f(x_i;\theta)\]
+
+In light of the basic idea of maximum likelihood estimation, one reasonable way to proceed is to treat the "likelihood function" \(L(\theta)\) as a function of \(\theta\), and find the value of \(\theta\) that maximizes it.
+
+**Example 1-1**
+
+Suppose we have a random sample \(X_1, X_2, ..., X_n\) where:
+
+- \(X_i = 0\) if a randomly selected student does not own a sports car, and
+- \(X_i = 1\) if a randomly selected student does own a sports car.
+
+Assuming that the \(X_i\) are independent Bernoulli random variables with unknown parameter \(p\), find the maximum likelihood estimator of \(p\), the proportion of students who own a sports car.
+
+**Answer**
+
+If the \(X_i\) are independent Bernoulli random variables with unknown parameter \(p\), then the probability mass function of each \(X_i\) is:
+
+\[f(x_i;\theta) = p^{x_i} \cdot (1-p)^{1-x_i}\]
+
+for \(x_i = 0\) or 1 and \(0 < p < 1\). Therefore, the likelihood function \(L(p)\) is, by definition:
+
+\[L(p) = \prod_{i=1}^n f(x_i;\theta) = p^{x_1} \cdot (1-p)^{1-x_1} \cdot p^{x_2} \cdot (1-p)^{1-x_2} \cdot ... \cdot p^{x_n} \cdot (1-p)^{1-x_n}\]
+
+for \(0 < p < 1\). Simplifying, by summing up the exponents, we get:
+
+\[L(p) = p^{\sum x_i} \cdot (1-p)^{n - \sum x_i}\]
+
+Now, to implement the method of maximum likelihood, we need to find the \(p\) that maximizes the likelihood \(L(p)\). We need to differentiate the log-likelihood function with respect to \(p\), set it to zero, and solve for \(p\).
+
+Now, with that example behind us, let us take a look at formal definitions of the terms:
+
+- Likelihood function
+- Maximum likelihood estimators
+- Maximum likelihood estimates

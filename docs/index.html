@@ -76,7 +76,14 @@
 <li><a href="./">Inferential Statistics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Down the rabbit-hole</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Point Estimation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#definitions"><i class="fa fa-check"></i><b>1.1.1</b> Definitions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2</b> Maximum Likelihood Estimation</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="the-pool-of-tears.html"><a href="the-pool-of-tears.html"><i class="fa fa-check"></i><b>2</b> The pool of tears</a></li>
 <li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
 <li class="divider"></li>
@@ -103,9 +110,73 @@
 <p class="author"><em>AbdulHafiz Abba</em></p>
 <p class="date"><em>2024-03-11</em></p>
 </div>
-<div id="down-the-rabbit-hole" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Down the rabbit-hole<a href="index.html#down-the-rabbit-hole" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="point-estimation" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Point Estimation<a href="index.html#point-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="overview" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Overview<a href="index.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we have an unknown population parameter, such as a population mean <span class="math inline">\(\mu\)</span> or a population proportion <span class="math inline">\(p\)</span>, which we’d like to estimate. For example, suppose we are interested in estimating:</p>
+<ul>
+<li><span class="math inline">\(p\)</span>: the (unknown) proportion of American college students, 18-24, who have a smartphone</li>
+<li><span class="math inline">\(\mu\)</span>: the (unknown) mean number of days it takes Alzheimer’s patients to achieve certain milestones</li>
+</ul>
+<p>In either case, we can’t possibly survey the entire population. That is, we can’t survey all American college students between the ages of 18 and 24. Nor can we survey all patients with Alzheimer’s disease. So, of course, we take a random sample from the population and use the resulting data to estimate the value of the population parameter. However, we want the estimate to be “good” in some way.</p>
+<p>In this lesson, we’ll learn two methods, namely the method of maximum likelihood and the method of moments, for deriving formulas for “good” point estimates for population parameters. We’ll also learn one way of assessing whether a point estimate is “good.” We’ll do that by defining what it means for an estimate to be unbiased.</p>
+<div id="definitions" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Definitions<a href="index.html#definitions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ll start the lesson with some formal definitions. In doing so, recall that we denote the <span class="math inline">\(n\)</span> random variables arising from a random sample as subscripted uppercase letters: <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>. The corresponding observed values of a specific random sample are then denoted as subscripted lowercase letters: <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span>.</p>
+<p><strong>Parameter Space</strong></p>
+<p>The range of possible values of the parameter <span class="math inline">\(\theta\)</span> is called the parameter space <span class="math inline">\(\Omega\)</span> (the Greek letter “omega”). For example, if <span class="math inline">\(\mu\)</span> denotes the mean grade point average of all college students, then the parameter space (assuming a 4-point grading scale) is:
+<span class="math display">\[ \Omega = \{ \mu : 0 \leq \mu \leq 4 \} \]</span>
+And, if <span class="math inline">\(p\)</span> denotes the proportion of students who smoke cigarettes, then the parameter space is:
+<span class="math display">\[ \Omega = \{ p : 0 \leq p \leq 1 \} \]</span></p>
+<p><strong>Point Estimator</strong></p>
+<p>The function of <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span>, that is, the statistic <span class="math inline">\(u = (X_1, X_2, \ldots, X_n)\)</span> used to estimate <span class="math inline">\(\theta\)</span> is called a point estimator of <span class="math inline">\(\theta\)</span>. For example, the function:
+<span class="math display">\[ \bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i \]</span>
+is a point estimator of the population mean <span class="math inline">\(\mu\)</span>. The function:
+<span class="math display">\[ \hat{p} = \frac{1}{n} \sum_{i=1}^{n} X_i \]</span>
+(where <span class="math inline">\(X_i = 0\)</span> or 1) is a point estimator of the population proportion <span class="math inline">\(p\)</span>. And, the function:
+<span class="math display">\[ S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2 \]</span>
+is a point estimator of the population variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p><strong>Point Estimate</strong></p>
+<p>The function <span class="math inline">\(u(x_1, x_2, \ldots, x_n)\)</span> computed from a set of data is an observed point estimate of <span class="math inline">\(\theta\)</span>. For example, if <span class="math inline">\(x_i\)</span> are the observed grade point averages of a sample of 88 students, then:
+<span class="math display">\[ \bar{x} = \frac{1}{88} \sum_{i=1}^{88} x_i = 3.12 \]</span>
+is a point estimate of <span class="math inline">\(\mu\)</span>, the mean grade point average of all the students in the population. And, if <span class="math inline">\(x_i = 0\)</span> if a student has no tattoo, and <span class="math inline">\(x_i = 1\)</span> if a student has a tattoo, then:
+<span class="math display">\[ \hat{p} = 0.11 \]</span>
+is a point estimate of <span class="math inline">\(p\)</span>, the proportion of all students in the population who have a tattoo.</p>
+<p>Now, with the above definitions aside, let’s go learn about the method of maximum likelihood.</p>
+</div>
+</div>
+<div id="maximum-likelihood-estimation" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Maximum Likelihood Estimation<a href="index.html#maximum-likelihood-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Statement of the Problem</strong></p>
+<p>Suppose we have a random sample <span class="math inline">\(X_1, X_2, ..., X_n\)</span> whose assumed probability distribution depends on some unknown parameter <span class="math inline">\(\theta\)</span>. Our primary goal here will be to find a point estimator <span class="math inline">\(u(X_1, X_2, ..., X_n)\)</span>, such that <span class="math inline">\(u(x_1, x_2, ..., x_n)\)</span> is a “good” point estimate of <span class="math inline">\(\theta\)</span>, where <span class="math inline">\(x_1, x_2, ..., x_n\)</span> are the observed values of the random sample. For example, if we plan to take a random sample <span class="math inline">\(X_1, X_2, ..., X_n\)</span> for which the <span class="math inline">\(X_i\)</span> are assumed to be normally distributed with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, then our goal will be to find a good estimate of <span class="math inline">\(\mu\)</span>, say, using the data <span class="math inline">\(x_1, x_2, ..., x_n\)</span> that we obtained from our specific random sample.</p>
+<p><strong>The Basic Idea</strong></p>
+<p>It seems reasonable that a good estimate of the unknown parameter <span class="math inline">\(\theta\)</span> would be the value of <span class="math inline">\(\theta\)</span> that maximizes the probability, or rather, the likelihood, of getting the data we observed. So, that is, in a nutshell, the idea behind the method of maximum likelihood estimation. But how would we implement the method in practice? Well, suppose we have a random sample <span class="math inline">\(X_1, X_2, ..., X_n\)</span> for which the probability density (or mass) function of each <span class="math inline">\(X_i\)</span> is <span class="math inline">\(f(x_i;\theta)\)</span>. Then, the joint probability mass (or density) function of <span class="math inline">\(X_1, X_2, ..., X_n\)</span>, which we’ll (not so arbitrarily) call <span class="math inline">\(L(\theta)\)</span> is:</p>
+<p><span class="math display">\[L(\theta) = P(X_1=x_1, X_2=x_2, ..., X_n=x_n) = f(x_1;\theta) \cdot f(x_2;\theta) \cdot ... \cdot f(x_n;\theta) = \prod_{i=1}^n f(x_i;\theta)\]</span></p>
+<p>In light of the basic idea of maximum likelihood estimation, one reasonable way to proceed is to treat the “likelihood function” <span class="math inline">\(L(\theta)\)</span> as a function of <span class="math inline">\(\theta\)</span>, and find the value of <span class="math inline">\(\theta\)</span> that maximizes it.</p>
+<p><strong>Example 1-1</strong></p>
+<p>Suppose we have a random sample <span class="math inline">\(X_1, X_2, ..., X_n\)</span> where:</p>
+<ul>
+<li><span class="math inline">\(X_i = 0\)</span> if a randomly selected student does not own a sports car, and</li>
+<li><span class="math inline">\(X_i = 1\)</span> if a randomly selected student does own a sports car.</li>
+</ul>
+<p>Assuming that the <span class="math inline">\(X_i\)</span> are independent Bernoulli random variables with unknown parameter <span class="math inline">\(p\)</span>, find the maximum likelihood estimator of <span class="math inline">\(p\)</span>, the proportion of students who own a sports car.</p>
+<p><strong>Answer</strong></p>
+<p>If the <span class="math inline">\(X_i\)</span> are independent Bernoulli random variables with unknown parameter <span class="math inline">\(p\)</span>, then the probability mass function of each <span class="math inline">\(X_i\)</span> is:</p>
+<p><span class="math display">\[f(x_i;\theta) = p^{x_i} \cdot (1-p)^{1-x_i}\]</span></p>
+<p>for <span class="math inline">\(x_i = 0\)</span> or 1 and <span class="math inline">\(0 &lt; p &lt; 1\)</span>. Therefore, the likelihood function <span class="math inline">\(L(p)\)</span> is, by definition:</p>
+<p><span class="math display">\[L(p) = \prod_{i=1}^n f(x_i;\theta) = p^{x_1} \cdot (1-p)^{1-x_1} \cdot p^{x_2} \cdot (1-p)^{1-x_2} \cdot ... \cdot p^{x_n} \cdot (1-p)^{1-x_n}\]</span></p>
+<p>for <span class="math inline">\(0 &lt; p &lt; 1\)</span>. Simplifying, by summing up the exponents, we get:</p>
+<p><span class="math display">\[L(p) = p^{\sum x_i} \cdot (1-p)^{n - \sum x_i}\]</span></p>
+<p>Now, to implement the method of maximum likelihood, we need to find the <span class="math inline">\(p\)</span> that maximizes the likelihood <span class="math inline">\(L(p)\)</span>. We need to differentiate the log-likelihood function with respect to <span class="math inline">\(p\)</span>, set it to zero, and solve for <span class="math inline">\(p\)</span>.</p>
+<p>Now, with that example behind us, let us take a look at formal definitions of the terms:</p>
+<ul>
+<li>Likelihood function</li>
+<li>Maximum likelihood estimators</li>
+<li>Maximum likelihood estimates</li>
+</ul>
 
+</div>
 </div>
             </section>
 
@@ -144,7 +215,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/edit/main/index.Rmd",
+"link": "https://github.com/xadex01/Inferential_Statistics/edit/main/index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -152,7 +223,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/YOUR GITHUB USERNAME/YOUR REPO NAME/blob/main/index.Rmd",
+"link": "https://github.com/xadex01/Inferential_Statistics/blob/main/index.Rmd",
 "text": null
 },
 "download": null,
@@ -167,6 +238,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
