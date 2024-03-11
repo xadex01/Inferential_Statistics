@@ -1,7 +1,6 @@
-down-the-rabbit-hole
-the-pool-of-tears
-a-caucus-race-and-a-long-tale
 point-estimation
 overview
 definitions
 maximum-likelihood-estimation
+the-pool-of-tears
+a-caucus-race-and-a-long-tale

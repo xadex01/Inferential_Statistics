@@ -168,13 +168,68 @@ is a point estimate of <span class="math inline">\(p\)</span>, the proportion of
 <p><span class="math display">\[L(p) = \prod_{i=1}^n f(x_i;\theta) = p^{x_1} \cdot (1-p)^{1-x_1} \cdot p^{x_2} \cdot (1-p)^{1-x_2} \cdot ... \cdot p^{x_n} \cdot (1-p)^{1-x_n}\]</span></p>
 <p>for <span class="math inline">\(0 &lt; p &lt; 1\)</span>. Simplifying, by summing up the exponents, we get:</p>
 <p><span class="math display">\[L(p) = p^{\sum x_i} \cdot (1-p)^{n - \sum x_i}\]</span></p>
-<p>Now, to implement the method of maximum likelihood, we need to find the <span class="math inline">\(p\)</span> that maximizes the likelihood <span class="math inline">\(L(p)\)</span>. We need to differentiate the log-likelihood function with respect to <span class="math inline">\(p\)</span>, set it to zero, and solve for <span class="math inline">\(p\)</span>.</p>
+<p>Now, in order to implement the method of maximum likelihood, we need to find the <span class="math inline">\(p\)</span> that maximizes the likelihood <span class="math inline">\(L(p)\)</span>. We need to put on our calculus hats now since, in order to maximize the function, we are going to need to differentiate the likelihood function with respect to <span class="math inline">\(p\)</span>. In doing so, we’ll use a “trick” that often makes the differentiation a bit easier. Note that the natural logarithm is an increasing function of <span class="math inline">\(x\)</span>:</p>
+<div class="figure">
+<img src="path/to/image.jpg" alt="" />
+<p class="caption">Alt Text</p>
+</div>
+<p>That is, if <span class="math inline">\(x_1 &lt; x_2\)</span>, then <span class="math inline">\(f(x_1) &lt; f(x_2)\)</span>. That means that the value of <span class="math inline">\(p\)</span> that maximizes the natural logarithm of the likelihood function <span class="math inline">\(\ln L(p)\)</span> is also the value of <span class="math inline">\(p\)</span> that maximizes the likelihood function <span class="math inline">\(L(p)\)</span>. So, the “trick” is to take the derivative of <span class="math inline">\(\ln L(p)\)</span> (with respect to <span class="math inline">\(p\)</span>) rather than taking the derivative of <span class="math inline">\(L(p)\)</span>. Again, doing so often makes the differentiation much easier. (By the way, throughout the remainder of this course, I will use either <span class="math inline">\(\ln L(p)\)</span> or <span class="math inline">\(\log L(p)\)</span> to denote the natural logarithm of the likelihood function.)</p>
+<p>In this case, the natural logarithm of the likelihood function is:</p>
+<p><span class="math display">\[ \log L(p) = \left( \sum_{i=1}^{n} x_i \right) \log(p) + \left( n - \sum_{i=1}^{n} x_i \right) \log(1-p) \]</span></p>
+<p>Now, taking the derivative of the log-likelihood, and setting it to <span class="math inline">\(0\)</span>, we get:</p>
+<p><span class="math display">\[ \frac{\partial \log L(p)}{\partial p} = \frac{\sum_{i=1}^{n} x_i}{p} - \frac{n - \sum_{i=1}^{n} x_i}{1-p} \]</span></p>
+<p>Now, multiplying through by <span class="math inline">\(p(1-p)\)</span>, we get:</p>
+<p><span class="math display">\[ \left( \sum_{i=1}^{n} x_i \right) (1-p) - (n - \sum_{i=1}^{n} x_i) p = 0 \]</span></p>
+<p>Upon distribution, we see that two of the resulting terms cancel each other out:</p>
+<p><span class="math display">\[ \sum_{i=1}^{n} x_i - p \sum_{i=1}^{n} x_i - np + p \sum_{i=1}^{n} x_i = 0 \]</span></p>
+<p>leaving us with:</p>
+<p><span class="math display">\[ \sum_{i=1}^{n} x_i - np = 0 \]</span></p>
+<p>Now, all we have to do is solve for <span class="math inline">\(p\)</span>. In doing so, you’ll want to make sure that you always put a hat (“^”) on the parameter, in this case, <span class="math inline">\(p\)</span>, to indicate it is an estimate:</p>
+<p><span class="math display">\[ \hat{p} = \frac{\sum_{i=1}^{n} x_i}{n} \]</span></p>
+<p>or, alternatively, an estimator:</p>
+<p><span class="math display">\[ \hat{p} = \frac{\sum_{i=1}^{n} X_i}{n} \]</span></p>
+<p>Oh, and we should technically verify that we indeed did obtain a maximum. We can do that by verifying that the second derivative of the log-likelihood with respect to <span class="math inline">\(p\)</span> is negative. It is, but you might want to do the work to convince yourself!</p>
 <p>Now, with that example behind us, let us take a look at formal definitions of the terms:</p>
 <ul>
-<li>Likelihood function</li>
-<li>Maximum likelihood estimators</li>
-<li>Maximum likelihood estimates</li>
+<li>Likelihood Function</li>
+<li>Maximum Likelihood Estimators</li>
+<li>Maximum Likelihood Estimates</li>
 </ul>
+<p><strong>Definition:</strong> Let <span class="math inline">\(X_1, X_2, ..., X_n\)</span> be a random sample from a distribution that depends on one or more unknown parameters <span class="math inline">\(\theta_1, \theta_2, ..., \theta_m\)</span> with probability density (or mass) function <span class="math inline">\(f(x_i; \theta_1, \theta_2, ..., \theta_m)\)</span>. Suppose that <span class="math inline">\(\theta_1, \theta_2, ..., \theta_m\)</span> is restricted to a given parameter space <span class="math inline">\(\Omega\)</span>. Then:</p>
+<ul>
+<li>When regarded as a function of <span class="math inline">\(\theta_1, \theta_2, ..., \theta_m\)</span>, the joint probability density (or mass) function of <span class="math inline">\(X_1, X_2, ..., X_n\)</span>:</li>
+</ul>
+<p><span class="math display">\[ L(\theta_1, \theta_2, ..., \theta_m) = \prod_{i=1}^{n} f(x_i; \theta_1, \theta_2, ..., \theta_m) \]</span></p>
+<p><span class="math inline">\((\theta_1, \theta_2, ..., \theta_m)\)</span> in <span class="math inline">\(\Omega\)</span> is called the likelihood function.</p>
+<ul>
+<li>If <span class="math inline">\([u_1(x_1, x_2, ..., x_n), u_2(x_1, x_2, ..., x_n), ..., u_m(x_1, x_2, ..., x_n)]\)</span> is the m-tuple that maximizes the likelihood function, then:</li>
+</ul>
+<p><span class="math display">\[ \hat{\theta}_i = u_i(X_1, X_2, ..., X_n) \]</span></p>
+<p>is the maximum likelihood estimator of <span class="math inline">\(\theta_i\)</span>, for <span class="math inline">\(i = 1,2,...,m\)</span>.</p>
+<ul>
+<li>The corresponding observed values of the statistics in (2), namely:</li>
+</ul>
+<p>[ [u_1(x_1, x_2, …, x_n), u_2(x_1, x_2, …, x_n), …, u_m(x_1, x_2, …, x_n)] )</p>
+<p>are called the maximum likelihood estimates of <span class="math inline">\(\theta_i\)</span>, for <span class="math inline">\(i = 1,2,...,m\)</span>.</p>
+<p><strong>Example 1-2:</strong>
+Suppose the weights of randomly selected American female college students are normally distributed with unknown mean <span class="math inline">\(\mu\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. A random sample of 10 American female college students yielded the following weights (in pounds): 115, 122, 130, 127, 149, 160, 152, 138, 149, 180.</p>
+<p>Based on the definitions given above, identify the likelihood function and the maximum likelihood estimator of <span class="math inline">\(\mu\)</span>, the mean weight of all American female college students. Using the given sample, find a maximum likelihood estimate of <span class="math inline">\(\mu\)</span> as well.</p>
+<p><strong>Answer:</strong>
+The probability density function of <span class="math inline">\(X_i\)</span> is:</p>
+<p><span class="math display">\[ f(x_i; \mu, \sigma^2) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left[-\frac{(x_i - \mu)^2}{2\sigma^2}\right] \]</span></p>
+<p>for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>. The parameter space is <span class="math inline">\(\Omega = \{ (\mu, \sigma) : -\infty &lt; \mu &lt; \infty \text{ and } 0 &lt; \sigma &lt; \infty \}\)</span>. Therefore, the likelihood function is:</p>
+<p><span class="math display">\[ L(\mu, \sigma) = \sigma^{-n} (2\pi)^{-\frac{n}{2}} \exp\left[-\frac{1}{2\sigma^2} \sum_{i=1}^{n} (x_i - \mu)^2\right] \]</span></p>
+<p>for <span class="math inline">\(-\infty &lt; \mu &lt; \infty\)</span> and <span class="math inline">\(0 &lt; \sigma &lt; \infty\)</span>. It can be shown, upon maximizing the likelihood function with respect to <span class="math inline">\(\mu\)</span>, that the maximum likelihood estimator of <span class="math inline">\(\mu\)</span> is:</p>
+<p><span class="math display">\[ \hat{\mu} = \frac{1}{n} \sum_{i=1}^{n} X_i = \bar{X} \]</span></p>
+<p>Based on the given sample, a maximum likelihood estimate of <span class="math inline">\(\mu\)</span> is:</p>
+<p><span class="math display">\[ \hat{\mu} = \frac{1}{n} \sum_{i=1}^{n} x_i = \frac{1}{10} (115 + \ldots + 180) = 142.2 \]</span></p>
+<p>pounds. Note that the only difference between the formulas for the maximum likelihood estimator and the maximum likelihood estimate is that:</p>
+<ul>
+<li>the estimator is defined using capital letters (to denote that its value is random), and</li>
+<li>the estimate is defined using lowercase letters (to denote that its value is fixed and based on an obtained sample).</li>
+</ul>
+<p><strong>Example 1-3:</strong>
+Let <span class="math inline">\(X_1, X_2, ..., X_n\)</span> be a random sample from a normal distribution with unknown mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>. Find maximum likelihood estimators of mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>.</p>
 
 </div>
 </div>
