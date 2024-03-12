@@ -3,4 +3,5 @@ overview
 definitions
 maximum-likelihood-estimation
 neyman-pearson-lemma
+the-neyman-pearson-lemma
 a-caucus-race-and-a-long-tale

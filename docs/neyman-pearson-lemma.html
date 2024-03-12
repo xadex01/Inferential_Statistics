@@ -84,7 +84,10 @@
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2</b> Maximum Likelihood Estimation</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="neyman-pearson-lemma.html"><a href="neyman-pearson-lemma.html"><i class="fa fa-check"></i><b>2</b> Neyman-Pearson Lemma</a></li>
+<li class="chapter" data-level="2" data-path="neyman-pearson-lemma.html"><a href="neyman-pearson-lemma.html"><i class="fa fa-check"></i><b>2</b> Neyman-Pearson Lemma</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="neyman-pearson-lemma.html"><a href="neyman-pearson-lemma.html#the-neyman-pearson-lemma"><i class="fa fa-check"></i><b>2.1</b> The Neyman Pearson Lemma</a></li>
+</ul></li>
 <li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -115,7 +118,7 @@
 </ol>
 <p><strong>Notation</strong></p>
 <p>If <span class="math inline">\(X_1, X_2, ..., X_n\)</span> is a random sample of size <span class="math inline">\(n\)</span> from a distribution with probability density (or mass) function <span class="math inline">\(f(x; \theta)\)</span>, then the joint probability density (or mass) function of <span class="math inline">\(X_1, X_2, ..., X_n\)</span> is denoted by the likelihood function <span class="math inline">\(L(\theta)\)</span>. That is, the joint p.d.f. or p.m.f. is:</p>
-<p><span class="math display">\[ L(\theta) = f(x_1, x_2, ..., x_n; \theta) \]</span></p>
+<p><span class="math display">\[ L(\theta) =L(\theta; x_1, x_2, ... , x_n) = f(x_1;\theta) \times f(x_2;\theta) \times ... \times f(x_n;\theta) \]</span></p>
 <p>Note that for the sake of ease, we drop the reference to the sample <span class="math inline">\(X_1, X_2, ..., X_n\)</span> in using <span class="math inline">\(L(\theta)\)</span> as the notation for the likelihood function. We’ll want to keep in mind though that the likelihood <span class="math inline">\(L(\theta)\)</span> still depends on the sample data.</p>
 <p><strong>Simple hypothesis</strong></p>
 <p>If a random sample is taken from a distribution with parameter <span class="math inline">\(\theta\)</span>, a hypothesis is said to be a simple hypothesis if the hypothesis uniquely specifies the distribution of the population from which the sample is taken. Any hypothesis that is not a simple hypothesis is called a composite hypothesis.</p>
@@ -141,18 +144,115 @@ Again, the p.d.f. of an exponential random variable is:</p>
 <p>Suppose <span class="math inline">\(X_1, X_2, . . . ,X_n\)</span> is a random sample from a normal distribution with mean <span class="math inline">\(\mu\)</span> and unknown variance <span class="math inline">\(\sigma^2\)</span>. Is the hypothesis <span class="math inline">\(H:\mu = 12\)</span> a simple or a composite hypothesis?</p>
 <p><strong>Answer:</strong>
 The p.d.f. of a normal random variable is:</p>
-<p><span class="math display">\[ f(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\rigt]\]</span></p>
-<p>for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, and <span class="math inline">\(-\infty &lt; \mu &lt; \infty\)</span>, and <span class="math inline">\(0 &lt; \sigma &lt; \infty\)</span>. Under the hypothesis <span class="math inline">\(\mu = \mu_0\)</span>, the p.d.f. of a normal random variable is:</p>
-<p><span class="math display">\[ f(x; \mu_0, \sigma^2) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu_0)^2}{2\sigma^2}} \]</span></p>
-<p>for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, and <span class="math inline">\(-\infty &lt; \mu_0 &lt; \infty\)</span>, and <span class="math inline">\(0 &lt; \sigma &lt; \infty\)</span>. In this case, the mean parameter <span class="math inline">\(\mu\)</span> is uniquely specified in the p.d.f., but the variance <span class="math inline">\(\sigma^2\)</span> is not. Therefore, the hypothesis <span class="math inline">\(\mu = \mu_0\)</span> is a composite hypothesis.</p>
+<p><span class="math display">\[ f(x) = \frac{1}{\sigma\sqrt{2\pi}\sigma} \exp\left[{-\frac{(x-\mu)^2}{2\sigma^2}}\right] \]</span></p>
+<p>for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, <span class="math inline">\(-\infty &lt; \mu &lt; \infty\)</span>, and <span class="math inline">\(\sigma &gt; 0\)</span>. Under the hypothesis <span class="math inline">\(H:\mu = 12\)</span>, the p.d.f. of a normal random variable is:</p>
+<p><span class="math display">\[ f(x) = \frac{1}{\sigma\sqrt{2\pi}\sigma} \exp\left[{-\frac{(x-12)^2}{2\sigma^2}}\right] \]</span></p>
+<p>for <span class="math inline">\(-\infty &lt; x &lt; \infty\)</span>, and <span class="math inline">\(\sigma &gt; 0\)</span>. In this case, the mean parameter <span class="math inline">\(\mu=12\)</span> is uniquely specified in the p.d.f., but the variance <span class="math inline">\(\sigma^2\)</span> is not. Therefore, the hypothesis <span class="math inline">\(H:\mu = 12\)</span> is a composite hypothesis.</p>
 <p><strong>Size of <span class="math inline">\(\alpha\)</span></strong></p>
-<p>Consider the test of the simple null hypothesis <span class="math inline">\(\theta = \theta_0\)</span> against the simple alternative hypothesis <span class="math inline">\(\theta = \theta_1\)</span>. Let <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> be critical regions of size <span class="math inline">\(\alpha\)</span>, that is, let:</p>
-<p><span class="math display">\[ P(X \in C | \theta = \theta_1) = \alpha \]</span> and
-<span class="math display">\[ P(X \in D | \theta = \theta_1) = \alpha \]</span></p>
-<p>Then, <span class="math inline">\(C\)</span> is a best critical region of size <span class="math inline">\(\alpha\)</span> if the power of the test at <span class="math inline">\(\theta_1\)</span> is the largest among all possible hypothesis tests. More formally, <span class="math inline">\(C\)</span> is the best critical region of size <span class="math inline">\(\alpha\)</span> if, for every other critical region <span class="math inline">\(D\)</span> of size <span class="math inline">\(\alpha\)</span>, we have:</p>
-<p><span class="math display">\[ P(X \in C | \theta = \theta_1) \geq P(X \in D | \theta = \theta_1) \]</span></p>
+<p>Consider the test of the simple null hypothesis <span class="math inline">\(H_0:\theta = \theta_0\)</span> against the simple alternative hypothesis <span class="math inline">\(H_A: \theta = \theta_a\)</span>. Let <span class="math inline">\(C\)</span> and <span class="math inline">\(D\)</span> be critical regions of size <span class="math inline">\(\alpha\)</span>, that is, let:</p>
+<p><span class="math inline">\(\alpha = P(C;\theta_0)\)</span> and <span class="math inline">\(\alpha = P(D;\theta_0)\)</span></p>
+<p>Then, <span class="math inline">\(C\)</span> is a best critical region of size <span class="math inline">\(\alpha\)</span> if the power of the test at <span class="math inline">\(\theta =\theta_a\)</span> is the largest among all possible hypothesis tests. More formally, <span class="math inline">\(C\)</span> is the best critical region of size <span class="math inline">\(\alpha\)</span> if, for every other critical region <span class="math inline">\(D\)</span> of size <span class="math inline">\(\alpha\)</span>, we have:</p>
+<p><span class="math display">\[P(C;\theta_0)&gt;P(D;\theta_0)\]</span></p>
 <p>That is, <span class="math inline">\(C\)</span> is the best critical region of size <span class="math inline">\(\alpha\)</span> if the power of <span class="math inline">\(C\)</span> is at least as great as the power of every other critical region <span class="math inline">\(D\)</span> of size <span class="math inline">\(\alpha\)</span>. We say that <span class="math inline">\(C\)</span> is the most powerful size <span class="math inline">\(\alpha\)</span> test.</p>
+<p>Now that we have clearly defined what we mean for a critical region C to be “best,” we’re ready to turn to the Neyman Pearson Lemma to learn what form a hypothesis test must take in order for it to be the best, that is, to be the most powerful test.</p>
+<div id="the-neyman-pearson-lemma" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> The Neyman Pearson Lemma<a href="neyman-pearson-lemma.html#the-neyman-pearson-lemma" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we have a random sample <span class="math inline">\(X_1, X_2, ..., X_n\)</span> from a probability distribution with parameter <span class="math inline">\(\theta\)</span>. Then, if <span class="math inline">\(C\)</span> is a critical region of size <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(k\)</span> is a constant such that:</p>
+<p><span class="math display">\[
+\frac{L(\theta_0)}{L(\theta_1)} \leq k \quad \text{inside the critical region } C
+\]</span></p>
+<p>and:</p>
+<p><span class="math display">\[
+\frac{L(\theta_0)}{L(\theta_1)} \geq k \quad \text{outside the critical region } C
+\]</span></p>
+<p>then <span class="math inline">\(C\)</span> is the best, that is, most powerful, critical region for testing the simple null hypothesis <span class="math inline">\(H_0:\theta = \theta_0\)</span> against the simple alternative hypothesis <span class="math inline">\(H_A:\theta = \theta_a\)</span>.</p>
+<p><strong>Proof</strong></p>
+<p>Well, okay, so perhaps the proof isn’t all that particularly enlightening, but perhaps if we take a look at a simple example, we’ll become more enlightened. Suppose <span class="math inline">\(X\)</span> is a single observation (that’s one data point!) from a normal population with unknown mean <span class="math inline">\(\mu\)</span> and known standard deviation <span class="math inline">\(\sigma=1/3\)</span>. Then, we can apply the Neyman-Pearson Lemma when testing the simple null hypothesis <span class="math inline">\(H_0: \mu = 3\)</span> against the simple alternative hypothesis <span class="math inline">\(H_A:\mu = 4\)</span>. The lemma tells us that, in order to be the most powerful test, the ratio of the likelihoods:</p>
+<p><span class="math display">\[
+\frac{L(\mu_0)}{L(\mu_\alpha)}=\frac{L(3)}{L(4)}
+\]</span></p>
+<p>should be small for sample points <span class="math inline">\(X\)</span> inside the critical region <span class="math inline">\(C\)</span> (“less than or equal to some constant <span class="math inline">\(k\)</span>”) and large for sample points <span class="math inline">\(X\)</span> outside of the critical region (“greater than or equal to some constant <span class="math inline">\(k\)</span>”). In this case, because we are dealing with just one observation <span class="math inline">\(X\)</span>, the ratio of the likelihoods equals the ratio of the normal probability curves:</p>
+<p><span class="math display">\[
+\frac{L(3)}{L(4)}=\frac{f(x; 3,1/9)}{f(x; 4,1/9)}
+\]</span></p>
+<p>Then, the following drawing summarizes the situation:</p>
+<div class="figure">
+<img src="Pictures/Lesson55.gif" alt="" />
+<p class="caption">Alt text</p>
+</div>
+<p>In short, it makes intuitive sense that we would want to reject <span class="math inline">\(H_0:\mu=3\)</span> in favor of <span class="math inline">\(H_A:\mu=4\)</span> if our observed <span class="math inline">\(x\)</span> is large, that is, if our observed <span class="math inline">\(x\)</span> falls in the critical region <span class="math inline">\(C\)</span>. Well, as the drawing illustrates, it is those large <span class="math inline">\(X\)</span> values in <span class="math inline">\(C\)</span> for which the ratio of the likelihoods is small; and, it is for the small <span class="math inline">\(X\)</span> values not in <span class="math inline">\(C\)</span> for which the ratio of the likelihoods is large. Just as the Neyman-Pearson Lemma suggests!</p>
+<p>Well, okay, that’s the intuition behind the Neyman-Pearson Lemma. Now, let’s take a look at a few examples of the lemma in action.</p>
+<p><strong>Example 4</strong><br />
+Suppose <span class="math inline">\(X\)</span> is a single observation (again, one data point!) from a population with probability density function given by:</p>
+<p><span class="math display">\[
+f(x) = \theta x^{\theta-1}
+\]</span></p>
+<p>for <span class="math inline">\(0 &lt; x &lt; 1\)</span>. Find the test with the best critical region, that is, find the most powerful test, with significance level <span class="math inline">\(\alpha =0.05,\)</span> for testing the simple null hypothesis <span class="math inline">\(H_0:\theta=3\)</span> against the simple alternative hypothesis <span class="math inline">\(H_A:\theta=2\)</span>.</p>
+<p><strong>Answer</strong><br />
+Because both the null and alternative hypotheses are simple hypotheses, we can apply the Neyman-Pearson Lemma in an attempt to find the most powerful test. The lemma tells us that the ratio of the likelihoods under the null and alternative must be less than some constant <span class="math inline">\(k\)</span>. Again, because we are dealing with just one observation <span class="math inline">\(X\)</span>, the ratio of the likelihoods equals the ratio of the probability density functions, giving us:</p>
+<p><span class="math display">\[
+\frac{L(\theta_0)}{L(\theta_\alpha)}=\frac{3x^{3-1}}{2x^{2-1}}=\frac{3}{2}x\le k
+\]</span></p>
+<p>That is, the lemma tells us that the form of the rejection region for the most powerful test is:</p>
+<p><span class="math display">\[
+\frac{3}{2}x\le k
+\]</span></p>
+<p>or alternatively, since <span class="math inline">\(\frac{2}{3}k\)</span> is just a new constant <span class="math inline">\(k^*\)</span>, the rejection region for the most powerful test is of the form:</p>
+<p><span class="math display">\[
+x&lt;\frac{3}{2}k= k^*
+\]</span></p>
+<p>Now, it’s just a matter of finding <span class="math inline">\(k^*\)</span>, and our work is done. We want <span class="math inline">\(\alpha = P(\text{Type I Error}) = P(\text{rejecting the null hypothesis when the null hypothesis is true})\)</span> to equal <span class="math inline">\(0.05\)</span>. In order for that to happen, the following must hold:</p>
+<p><span class="math display">\[
+\alpha=P(X&lt;k^* \, when \, \theta=3)=\int_{0}^{k^*}3x^2 \, dx = 0.05
+\]</span></p>
+<p>Doing the integration, we get:</p>
+<p><span class="math display">\[
+\left[x^3 \right]_{x=0}^{x=k^*}=(k^*)^3 = 0.05
+\]</span></p>
+<p>And, solving for <span class="math inline">\(k^*\)</span>, we get:</p>
+<p><span class="math display">\[
+k^* = (0.05)^\frac{1}{3} =0.368
+\]</span></p>
+<p>That is, the Neyman-Pearson Lemma tells us that the rejection region of the most powerful test for testing <span class="math inline">\(H_0:\theta = 3\)</span> against <span class="math inline">\(H_A:\theta = 2\)</span>, under the assumed probability distribution, is:</p>
+<p><span class="math display">\[
+x &lt; 0.368
+\]</span></p>
+<p>That is, among all of the possible tests for testing <span class="math inline">\(H_0:\theta = 3\)</span> against <span class="math inline">\(H_A:\theta = 2\)</span>, based on a single observation <span class="math inline">\(X\)</span> and with a significance level of <span class="math inline">\(0.05\)</span>, this test has the largest possible value for the power under the alternative hypothesis, that is, when <span class="math inline">\(\theta = 2\)</span>.</p>
+<p><strong>Example 5</strong><br />
+Suppose <span class="math inline">\(X_1, X_2, ..., X_n\)</span> is a random sample from a normal population with mean <span class="math inline">\(\mu\)</span> and variance 16. Find the test with the best critical region, that is, find the most powerful test, with a sample size of <span class="math inline">\(n = 16\)</span> and a significance level <span class="math inline">\(\alpha=0.05\)</span> to test the simple null hypothesis <span class="math inline">\(H_0:\mu = 10\)</span> against the simple alternative hypothesis <span class="math inline">\(H_A:\mu = 15\)</span>.</p>
+<p><strong>Answer</strong><br />
+Because the variance is specified, both the null and alternative hypotheses are simple hypotheses. Therefore, we can apply the Neyman-Pearson Lemma in an attempt to find the most powerful test. The lemma tells us that the ratio of the likelihoods under the null and alternative must be less than some constant <span class="math inline">\(k\)</span>:</p>
+<p><span class="math display">\[
+\frac{L(10)}{L(15)} = \frac{(32\pi)^{-16/2}\exp\left[-(1/32)\sum^{16}_{i=1}(x_i-10)^2\right]}{(32\pi)^{-16/2}\exp\left[-(1/32)\sum^{16}_{i=1}(x_i-15)^2\right]} \le k
+\]</span></p>
+<p>Simplifying, we get:</p>
+<p><span class="math display">\[
+exp \left[ - \left( \dfrac{1}{32} \right) \left( \sum_{i=1}^{16}(x_i -10)^2 - \sum_{i=1}^{16}(x_i -15)^2 \right) \right] \le k
+\]</span></p>
+<p>And, simplifying yet more, we get:</p>
+<div class="figure">
+<img src="Pictures/Lesson56.gif" alt="" />
+<p class="caption">Alt text</p>
+</div>
+<p>Now, taking the natural logarithm of both sides of the inequality, collecting like terms, and multiplying through by 32, we get:</p>
+<p><span class="math display">\[-10\Sigma x_i +2000 \le 32ln(k)\]</span></p>
+<p>And, moving the constant term on the left-side of the inequality to the right-side, and dividing through by −160, we get:
+<span class="math display">\[\dfrac{1}{16}\Sigma x_i \ge -\frac{1}{160}(32ln(k)-2000)\]</span></p>
+<p>That is, the Neyman Pearson Lemma tells us that the rejection region for the most powerful test for testing <span class="math inline">\(H_0:\mu=10\)</span> against <span class="math inline">\(H_A:\mu=15\)</span>, under the normal probability model, is of the form:</p>
+<p><span class="math display">\[\bar{x} \ge k^*\]</span>
+where <span class="math inline">\(k^*\)</span> is selected so that the size of the critical region is <span class="math inline">\(\alpha=0.05\)</span>. That’s simple enough, as it just involves a normal probabilty calculation! Under the null hypothesis, the sample mean is normally distributed with mean 10 and standard deviation 4/4 = 1. Therefore, the critical value <span class="math inline">\(k^*\)</span> is deemed to be 11.645:</p>
+<div class="figure">
+<img src="Pictures/Lesson57.gif" alt="" />
+<p class="caption">Alt text</p>
+</div>
+<p>That is, the Neyman Pearson Lemma tells us that the rejection region for the most powerful test for testing <span class="math inline">\(H_0:\mu=10\)</span> against <span class="math inline">\(H_A:\mu=15\)</span>, under the normal probability model, is:</p>
+<p><span class="math display">\[\bar{x}\ge11.645\]</span>
+The power of such a test when <span class="math inline">\(\mu = 15\)</span> is:</p>
+<p><span class="math display">\[P(\bar{X} &gt; 11.645 \text{ when } \mu = 15) = P \left( Z &gt; \dfrac{11.645-15}{\sqrt{16} / \sqrt{16} } \right) = P(Z &gt; -3.36) = 0.9996
+\]</span></p>
+<p>The power can’t get much better than that, and the Neyman Pearson Lemma tells us that we shouldn’t expect it to get better! That is, the Lemma tells us that there is no other test out there that will give us greater power for testing <span class="math inline">\(H_0:\mu=10\)</span> against <span class="math inline">\(H_A:\mu=15\)</span></p>
 
+</div>
 </div>
             </section>
 
