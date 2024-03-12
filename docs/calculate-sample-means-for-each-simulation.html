@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Calculate sample means for each simulation | Inferential Statistics</title>
+  <meta name="description" content="Chapter 6 Calculate sample means for each simulation | Inferential Statistics" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Calculate sample means for each simulation | Inferential Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Calculate sample means for each simulation | Inferential Statistics" />
+  
+  
+  
+
+<meta name="author" content="AbdulHafiz Abba" />
+
+
+<meta name="date" content="2024-03-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="generate-data-from-various-distributions-modify-as-needed.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Inferential Statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Point Estimation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#definitions"><i class="fa fa-check"></i><b>1.1.1</b> Definitions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2</b> Maximum Likelihood Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="neyman-pearson-lemma.html"><a href="neyman-pearson-lemma.html"><i class="fa fa-check"></i><b>2</b> Neyman-Pearson Lemma</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="neyman-pearson-lemma.html"><a href="neyman-pearson-lemma.html#the-neyman-pearson-lemma"><i class="fa fa-check"></i><b>2.1</b> The Neyman Pearson Lemma</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html"><i class="fa fa-check"></i><b>3</b> Testing and Estimation - Large vs. Small Samples</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#the-central-limit-theorem-clt"><i class="fa fa-check"></i><b>3.1</b> The Central Limit Theorem (CLT)</a></li>
+<li class="chapter" data-level="3.2" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#visualizing-the-clt"><i class="fa fa-check"></i><b>3.2</b> Visualizing the CLT</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="simulate-multiple-sample-means-from-different-underlying-distributions.html"><a href="simulate-multiple-sample-means-from-different-underlying-distributions.html"><i class="fa fa-check"></i><b>4</b> Simulate multiple sample means from different underlying distributions</a></li>
+<li class="chapter" data-level="5" data-path="generate-data-from-various-distributions-modify-as-needed.html"><a href="generate-data-from-various-distributions-modify-as-needed.html"><i class="fa fa-check"></i><b>5</b> Generate data from various distributions (modify as needed)</a></li>
+<li class="chapter" data-level="6" data-path="calculate-sample-means-for-each-simulation.html"><a href="calculate-sample-means-for-each-simulation.html"><i class="fa fa-check"></i><b>6</b> Calculate sample means for each simulation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="calculate-sample-means-for-each-simulation.html"><a href="calculate-sample-means-for-each-simulation.html#large-samples"><i class="fa fa-check"></i><b>6.1</b> Large Samples</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="calculate-sample-means-for-each-simulation.html"><a href="calculate-sample-means-for-each-simulation.html#example-testing-hypothesis-about-population-mean"><i class="fa fa-check"></i><b>6.1.1</b> Example: Testing Hypothesis about Population Mean</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="calculate-sample-means-for-each-simulation.html"><a href="calculate-sample-means-for-each-simulation.html#large-samples-1"><i class="fa fa-check"></i><b>6.2</b> Large Samples</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="calculate-sample-means-for-each-simulation.html"><a href="calculate-sample-means-for-each-simulation.html#example-testing-hypothesis-about-population-mean-1"><i class="fa fa-check"></i><b>6.2.1</b> Example: Testing Hypothesis about Population Mean</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Inferential Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="calculate-sample-means-for-each-simulation" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Calculate sample means for each simulation<a href="calculate-sample-means-for-each-simulation.html#calculate-sample-means-for-each-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>sample_means_normal &lt;- sapply(split(data_normal, seq(1, n_simulations)), mean)
+sample_means_uniform &lt;- sapply(split(data_uniform, seq(1, n_simulations)), mean)
+sample_means_skewed &lt;- sapply(split(data_skewed, seq(1, n_simulations)), mean)</p>
+<div id="large-samples" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Large Samples<a href="calculate-sample-means-for-each-simulation.html#large-samples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When dealing with large samples (n &gt; 30), we can leverage the Central Limit Theorem (CLT). This theorem states that the sampling distribution of the sample mean (average) approaches a normal distribution regardless of the population distribution (under certain conditions).</p>
+<div id="example-testing-hypothesis-about-population-mean" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Example: Testing Hypothesis about Population Mean<a href="calculate-sample-means-for-each-simulation.html#example-testing-hypothesis-about-population-mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Scenario:</strong> We want to test if the average height of adults in a country is 170 cm. We randomly sample 1,000 adults and measure their heights.</li>
+</ul>
+</div>
+</div>
+<div id="large-samples-1" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Large Samples<a href="calculate-sample-means-for-each-simulation.html#large-samples-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When dealing with large samples (n &gt; 30), we can leverage the Central Limit Theorem (CLT). This theorem states that the sampling distribution of the sample mean (average) approaches a normal distribution regardless of the population distribution (under certain conditions).</p>
+<div id="example-testing-hypothesis-about-population-mean-1" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Example: Testing Hypothesis about Population Mean<a href="calculate-sample-means-for-each-simulation.html#example-testing-hypothesis-about-population-mean-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Scenario:</strong> We want to test if the average height of adults in a country is 170 cm. We randomly sample 1000 adults and measure their heights.</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="generate-data-from-various-distributions-modify-as-needed.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/xadex01/Inferential_Statistics/edit/main/03-race.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/xadex01/Inferential_Statistics/blob/main/03-race.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

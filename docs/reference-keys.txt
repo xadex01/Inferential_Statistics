@@ -4,4 +4,6 @@ definitions
 maximum-likelihood-estimation
 neyman-pearson-lemma
 the-neyman-pearson-lemma
-a-caucus-race-and-a-long-tale
+testing-and-estimation---large-vs.-small-samples
+central-limit-theorem-clt
+conceptual-explanation

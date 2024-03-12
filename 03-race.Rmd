@@ -1,1 +1,72 @@
-# A caucus-race and a long tale
+# Testing and Estimation - Large vs. Small Samples
+
+This lecture note explores the concepts of testing and estimation in the context of large and small samples.
+
+
+## Central Limit Theorem (CLT)
+
+The Central Limit Theorem (CLT) is a fundamental concept in statistics that describes the behavior of sample means when drawing repeated samples from a population. It states that, regardless of the shape of the population distribution, the distribution of sample means will tend to be approximately normal as the sample size increases.
+
+## Conceptual Explanation
+
+The CLT is based on three key principles:
+
+1. **Sampling Distribution**: When we draw multiple samples from a population and calculate the mean of each sample, we create a sampling distribution of the sample means.
+
+2. **Approximate Normality**: The distribution of sample means will be approximately normal if the sample size is sufficiently large, regardless of the shape of the population distribution. This is particularly true for sample sizes greater than 30.
+
+3. **Mean and Standard Deviation**: The mean of the sample means will be approximately equal to the population mean, and the standard deviation of the sample means (standard error) will decrease as the sample size increases.
+
+**Example 1**
+Suppose we want to understand the distribution of the mean height of students in the campus of Gadau. We'll collect the heights of 10000 students as our population data.
+
+```{r gather_data, echo=TRUE}
+# Simulate student heights in Gadau campus
+set.seed(123)
+student_heights <- rnorm(1000, mean = 170, sd = 10)
+
+# Display summary statistics of student heights
+summary(student_heights)
+# Number of samples
+num_samples <- 1000
+# Sample size
+sample_size <- 30
+
+# Initialize a vector to store sample means
+sample_means <- numeric(num_samples)
+
+# Take random samples and calculate means
+for (i in 1:num_samples) {
+  sample <- sample(student_heights, sample_size)
+  sample_means[i] <- mean(sample)
+}
+
+# Plot the distribution of sample means
+hist(sample_means, breaks = 30, main = "Distribution of Sample Means", xlab = "Sample Mean Height (cm)", col = "lightblue", border = "white")
+
+```
+In the histogram above, we can observe that as the number of samples increases, the distribution of sample means becomes more symmetric and bell-shaped, resembling a normal distribution. This is consistent with the Central Limit Theorem.
+
+**Example 2: Rolling a Fair Die**
+
+Suppose we want to understand the distribution of the mean of rolling a fair six-sided die. We will simulate rolling the die 1000 times and calculate the mean for each set of rolls.
+
+```{r example_code, echo=TRUE}
+# Set seed for reproducibility
+set.seed(123)
+
+# Simulate rolling a fair six-sided die 1000 times
+num_rolls <- 1000
+die_rolls <- sample(1:6, num_rolls, replace = TRUE)
+
+# Calculate the mean of each set of rolls
+sample_means <- numeric(num_rolls)
+for (i in 1:num_rolls) {
+  sample_means[i] <- mean(sample(die_rolls, i))
+}
+
+# Plot the distribution of sample means
+hist(sample_means, breaks = 30, main = "Distribution of Sample Means", xlab = "Sample Mean", col = "lightblue", border = "white")
+```
+
+
