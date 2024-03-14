@@ -68,5 +68,585 @@ for (i in 1:num_rolls) {
 # Plot the distribution of sample means
 hist(sample_means, breaks = 30, main = "Distribution of Sample Means", xlab = "Sample Mean", col = "lightblue", border = "white")
 ```
+## Testing and Estimation of Binomial Distribution
 
+### Understanding the Binomial Distribution
+
+Before we proceed, let's quickly recap what the binomial distribution entails. The binomial distribution describes the probability of a certain number of successes in a fixed number of independent Bernoulli trials, each with the same probability of success. It is characterized by two parameters: the number of trials, denoted as \( n \), and the probability of success in each trial, denoted as \( p \).
+
+**Example Scenario**
+
+-  **Dice Rolls:** Rolling a regular six-sided die multiple times. The binomial distribution helps us predict how many times we might roll a specific number, like getting exactly three 6s out of ten rolls.
+
+-  **Light Switch:** Turning a light switch on and off. Each time you flip the switch, it's like a trial where you can either get light (success) or darkness (failure). The binomial distribution helps us estimate the probability of getting a certain number of successes (light) in a series of trials.
+
+-  **Bowling Pins:** Knocking down bowling pins with a ball. Each time you roll the ball, you either knock down some pins or miss completely. The binomial distribution helps us calculate the likelihood of knocking down a certain number of pins in a given number of attempts.
+
+-  **Basketball Shots:** Shooting basketballs into a hoop. Each shot can either go in (success) or miss (failure). The binomial distribution can help us figure out the chances of making a certain number of shots out of several attempts.
+
+
+**Example of a Binomial Distribution**
+
+Suppose in a university, 70\% of students pass a certain course on their first attempt. If we randomly select 20 students from the university, what is the probability that exactly 15 of them will pass the course on their first attempt?
+
+Using the binomial distribution, the probability of exactly 15 students passing the course is given by:
+
+\[
+P(X = 15) = \binom{20}{15} (0.70)^{15} (1 - 0.70)^{20 - 15}
+\]
+
+Where:
+\begin{itemize}
+    \item \( X \) is the number of students passing the course,
+    \item \( n = 20 \) is the number of trials (students selected),
+    \item \( k = 15 \) is the number of successes,
+    \item \( p = 0.70 \) is the probability of success (students passing the course).
+\end{itemize}
+
+Plugging in the values:
+
+\[
+P(X = 15) = \binom{20}{15} (0.70)^{15} (0.30)^{5}
+\]
+
+Calculating:
+
+\[
+P(X = 15) = \frac{20!}{15! \times (20 - 15)!} (0.70)^{15} (0.30)^{5}
+\]
+
+\[
+P(X = 15) = \frac{20!}{15! \times 5!} (0.70)^{15} (0.30)^{5}
+\]
+
+\[
+P(X = 15) = \frac{20 \times 19 \times 18 \times 17 \times 16}{5 \times 4 \times 3 \times 2 \times 1} (0.70)^{15} (0.30)^{5}
+\]
+
+\[
+P(X = 15) = 15504 \times (0.70)^{15} (0.30)^{5}
+\]
+
+\[
+P(X = 15) \approx 0.1073
+\]
+
+Therefore, the probability that exactly 15 of the 20 selected students will pass the course on their first attempt is approximately 0.1073.
+
+
+
+
+## Testing Large Samples
+
+When dealing with large samples, we often utilize normal approximation to the binomial distribution due to the Central Limit Theorem (CLT). The CLT states that the sampling distribution of the sample mean will be approximately normally distributed for large sample sizes, regardless of the distribution of the population.
+
+
+### Z-Test for Proportions
+
+In testing large samples for binomial distributions, we typically employ the Z-test for proportions. This test allows us to determine whether the proportion of successes in our sample significantly differs from a hypothesized value.
+
+The formula for the Z-test statistic is:
+
+\[ Z = \frac{{\hat{p} - p_0}}{{\sqrt{\frac{{p_0(1 - p_0)}}{n}}}} \]
+
+Where:
+-  \( \hat{p} \) is the sample proportion,
+-  \( p_0 \) is the hypothesized proportion under the null hypothesis, and
+-  \( n \) is the sample size.
+
+**Binomial Testing Example**
+
+Suppose in a university campus, it is believed that 60\% of the students own a laptop. To test this claim, a random sample of 200 students is taken, and it is found that 115 of them own a laptop.
+
+We want to test whether the proportion of students owning a laptop is significantly different from the claimed proportion of 60\%.
+
+**Hypotheses**
+
+Let \( p \) be the true proportion of students owning a laptop.
+
+The null hypothesis (\( H_0 \)) is that \( p = 0.60 \), and the alternative hypothesis (\( H_1 \)) is that \( p \neq 0.60 \).
+
+**Test Statistic**
+
+We will use the Z-test for proportions to test the hypotheses. The test statistic is given by:
+
+\[
+Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1 - p_0)}{n}}}
+\]
+
+where:
+\begin{itemize}
+    \item \( \hat{p} \) is the sample proportion,
+    \item \( p_0 \) is the hypothesized proportion under the null hypothesis,
+    \item \( n \) is the sample size.
+\end{itemize}
+
+\subsection*{Calculation}
+
+Given:
+\begin{align*}
+    \hat{p} &= \frac{115}{200} = 0.575 \\
+    p_0 &= 0.60 \\
+    n &= 200
+\end{align*}
+
+Using these values, we can calculate the test statistic:
+
+\[
+Z = \frac{0.575 - 0.60}{\sqrt{\frac{0.60(1 - 0.60)}{200}}}
+\]
+
+\[
+Z = \frac{-0.025}{\sqrt{\frac{0.60(0.40)}{200}}}
+\]
+
+\[
+Z \approx \frac{-0.025}{\sqrt{\frac{0.24}{200}}}
+\]
+
+\[
+Z \approx \frac{-0.025}{\sqrt{0.0012}}
+\]
+
+\[
+Z \approx \frac{-0.025}{0.0346}
+\]
+
+\[
+Z \approx -0.7225
+\]
+
+**Conclusion**
+
+The calculated value of the test statistic is \( Z = -0.7225 \).
+
+At a significance level of 0.05 (or 95\% confidence level), the critical values for a two-tailed test are \( \pm 1.96 \).
+
+Since \( -1.96 < -0.7225 < 1.96 \), we fail to reject the null hypothesis.
+
+Therefore, there is not enough evidence to conclude that the proportion of students owning a laptop is significantly different from 60\%.
+
+
+## Estimation of Parameters
+
+### Point Estimation
+
+Point estimation involves estimating a single value for a population parameter based on sample data. For the binomial distribution, we often estimate the population proportion \( p \) using the sample proportion \( \hat{p} \).
+
+
+
+### Interval Estimation
+
+Interval estimation, on the other hand, provides a range of values within which the population parameter is likely to lie. For large samples, the confidence interval for the population proportion can be calculated using the normal approximation:
+
+\[ \hat{p} \pm Z_{\alpha/2} \times \sqrt{\frac{{\hat{p}(1 - \hat{p})}}{n}} \]
+
+Where \( Z_{\alpha/2} \) is the critical value from the standard normal distribution corresponding to the desired level of confidence.
+
+**Example**
+
+Suppose in a university campus, it is believed that 60\% of the students own a laptop. To estimate the true proportion of students owning a laptop, a random sample of 200 students is taken, and it is found that 115 of them own a laptop.
+
+We want to construct a 95\% confidence interval for the true proportion of students owning a laptop.
+
+**Interval Estimate**
+
+For large samples, the confidence interval for the population proportion can be calculated using the normal approximation:
+
+\[
+\hat{p} \pm Z_{\alpha/2} \times \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}
+\]
+
+where:
+\begin{itemize}
+    \item \( \hat{p} \) is the sample proportion (point estimate),
+    \item \( Z_{\alpha/2} \) is the critical value from the standard normal distribution corresponding to the desired level of confidence,
+    \item \( n \) is the sample size.
+\end{itemize}
+
+Given:
+\begin{align*}
+    \hat{p} &= 0.575 \\
+    n &= 200 \\
+    \alpha &= 0.05
+\end{align*}
+
+At a 95\% confidence level, \( Z_{\alpha/2} = 1.96 \).
+
+Plugging in the values:
+
+\[
+\text{Margin of Error} = 1.96 \times \sqrt{\frac{0.575(1 - 0.575)}{200}} \approx 0.0704
+\]
+
+\[
+\text{Lower Bound} = 0.575 - 0.0704 \approx 0.5046
+\]
+
+\[
+\text{Upper Bound} = 0.575 + 0.0704 \approx 0.6446
+\]
+
+Therefore, the 95\% confidence interval for the true proportion of students owning a laptop is approximately \( (0.5046, 0.6446) \).
+
+
+
+## Small Sample Situations
+
+In small sample situations, the normal approximation may not be appropriate. Instead, we rely on exact methods such as the binomial test or the chi-square goodness-of-fit test.
+
+### Binomial Test
+
+The binomial test is used to assess whether the observed number of successes in a sample significantly differs from the expected number of successes under a specified null hypothesis. It directly calculates the probability of observing the given number of successes or more extreme outcomes.
+
+**Example**
+
+Suppose in a university campus, it is believed that 60\% of the students own a laptop. To test this claim, a random sample of 20 students is taken, and it is found that 11 of them own a laptop.
+
+We want to test whether the proportion of students owning a laptop is significantly different from the claimed proportion of 60\%.
+
+**Hypotheses**
+
+Let \( p \) be the true proportion of students owning a laptop.
+
+The null hypothesis (\( H_0 \)) is that \( p = 0.60 \), and the alternative hypothesis (\( H_1 \)) is that \( p \neq 0.60 \).
+
+**Test Statistic**
+
+For small sample situations, we can use the binomial test to assess whether the observed number of successes in a sample significantly differs from the expected number of successes under the null hypothesis.
+
+The test statistic for the binomial test is the number of successes (\( k \)).
+
+**Calculation**
+
+Given:
+\begin{align*}
+    k &= 11 \\
+    n &= 20 \\
+    p_0 &= 0.60
+\end{align*}
+
+Using these values, we can calculate the probability of observing 11 or fewer successes under the null hypothesis:
+
+\[
+P(X \leq 11) = \sum_{x=0}^{11} \binom{20}{x} (0.60)^x (0.40)^{20-x}
+\]
+
+Using statistical software or tables, we find \( P(X \leq 11) \approx 0.049 \).
+
+Since \( P(X \leq 11) < 0.05 \), we reject the null hypothesis.
+
+\subsection*{Conclusion}
+
+The observed proportion of students owning a laptop is significantly different from the claimed proportion of 60\%.
+
+
+
+**Binomial Testing Example**
+
+Suppose in a university campus, it is believed that 60\% of the students own a laptop. To test this claim, a random sample of 200 students is taken, and it is found that 115 of them own a laptop.
+
+We want to test whether the proportion of students owning a laptop is significantly different from the claimed proportion of 60\%.
+
+**Hypotheses**
+
+Let \( p \) be the true proportion of students owning a laptop.
+
+The null hypothesis (\( H_0 \)) is that \( p = 0.60 \), and the alternative hypothesis (\( H_1 \)) is that \( p \neq 0.60 \).
+
+**Test Statistic**
+
+We will use the Z-test for proportions to test the hypotheses. The test statistic is given by:
+
+\[
+Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1 - p_0)}{n}}}
+\]
+
+where:
+\begin{itemize}
+    \item \( \hat{p} \) is the sample proportion,
+    \item \( p_0 \) is the hypothesized proportion under the null hypothesis,
+    \item \( n \) is the sample size.
+\end{itemize}
+
+\subsection*{Calculation}
+
+Given:
+\begin{align*}
+    \hat{p} &= \frac{115}{200} = 0.575 \\
+    p_0 &= 0.60 \\
+    n &= 200
+\end{align*}
+
+Using these values, we can calculate the test statistic:
+
+\[
+Z = \frac{0.575 - 0.60}{\sqrt{\frac{0.60(1 - 0.60)}{200}}}
+\]
+
+\[
+Z = \frac{-0.025}{\sqrt{\frac{0.60(0.40)}{200}}}
+\]
+
+\[
+Z \approx \frac{-0.025}{\sqrt{\frac{0.24}{200}}}
+\]
+
+\[
+Z \approx \frac{-0.025}{\sqrt{0.0012}}
+\]
+
+\[
+Z \approx \frac{-0.025}{0.0346}
+\]
+
+\[
+Z \approx -0.7225
+\]
+
+**Conclusion**
+
+The calculated value of the test statistic is \( Z = -0.7225 \).
+
+At a significance level of 0.05 (or 95\% confidence level), the critical values for a two-tailed test are \( \pm 1.96 \).
+
+Since \( -1.96 < -0.7225 < 1.96 \), we fail to reject the null hypothesis.
+
+Therefore, there is not enough evidence to conclude that the proportion of students owning a laptop is significantly different from 60\%.
+
+### Chi-Square Goodness-of-Fit Test
+
+The chi-square goodness-of-fit test is another method for testing the fit of observed data to an expected distribution. It can be used to compare the observed frequencies in different categories with the expected frequencies.
+
+**Example**
+
+Suppose in a university campus, it is believed that 60\% of the students own a laptop. To test this claim, a random sample of 20 students is taken, and it is found that 11 of them own a laptop.
+
+We want to test whether the proportion of students owning a laptop follows the claimed proportion of 60\%.
+
+**Hypotheses**
+
+Let \( p \) be the true proportion of students owning a laptop.
+
+The null hypothesis (\( H_0 \)) is that the observed proportions follow the claimed proportion of 60\%, and the alternative hypothesis (\( H_1 \)) is that they do not.
+
+**Test Statistic**
+
+For the chi-square goodness-of-fit test, we compare the observed frequencies with the expected frequencies under the null hypothesis. The test statistic is given by:
+
+\[
+\chi^2 = \sum \frac{{(O_i - E_i)^2}}{{E_i}}
+\]
+
+where:
+\begin{itemize}
+    \item \( O_i \) is the observed frequency for category \( i \),
+    \item \( E_i \) is the expected frequency for category \( i \).
+\end{itemize}
+
+\subsection*{Calculation}
+
+Given:
+\begin{align*}
+    \text{Observed successes (students with laptops)} &= 11 \\
+    \text{Total sample size} &= 20 \\
+    \text{Expected successes (based on claimed proportion)} &= 0.60 \times 20 = 12
+\end{align*}
+
+Using these values, we can calculate the chi-square test statistic:
+
+\[
+\chi^2 = \frac{{(11 - 12)^2}}{{12}} = \frac{{(-1)^2}}{{12}} = \frac{1}{12} \approx 0.0833
+\]
+
+**Conclusion**
+
+At a significance level of 0.05, with 1 degree of freedom, the critical value for the chi-square distribution is approximately 3.841.
+
+Since \( \chi^2 = 0.0833 < 3.841 \), we fail to reject the null hypothesis.
+
+Therefore, we do not have enough evidence to conclude that the observed proportions significantly differ from the claimed proportion of 60\%.
+
+
+# Understanding the Poisson Distribution
+
+Before we proceed, let’s quickly recap what the Poisson distribution entails. The Poisson distribution describes the probability of a certain number of events occurring in a fixed interval of time or space. It is often used to model the number of occurrences of rare events in a large population.
+
+Example Scenarios
+
+1. **Phone Calls**: Counting the number of phone calls received by a call center in an hour. The Poisson distribution helps us predict how many calls we might receive during a specific time period, such as getting exactly five calls in an hour.
+
+2. **Traffic Accidents**: Recording the number of traffic accidents that occur at a particular intersection in a day. The Poisson distribution helps us estimate the probability of a certain number of accidents happening in a given timeframe, like having exactly two accidents in a day.
+
+3. **Typographical Errors**: Counting the number of typographical errors in a book. The Poisson distribution can help us calculate the likelihood of having a specific number of errors in a given number of pages, such as having exactly ten errors in 100 pages.
+
+4. **Email Arrivals**: Tracking the number of emails arriving in an inbox per minute. The Poisson distribution helps us understand the probability of receiving a certain number of emails in a short time span, like getting exactly three emails in a minute.
+
+
+**Poisson Distribution Example**
+
+Suppose we are interested in modeling the number of students visiting the library in an hour at the University of Gadau. Let's assume that, on average, the library receives 10 students per hour.
+
+**Probability Mass Function**
+
+The Poisson distribution helps us calculate the probability of a certain number of events occurring in a fixed interval of time or space. 
+
+Let's calculate the probability of having exactly 5 students visit the library in an hour using the Poisson distribution.
+
+Given:
+\begin{align*}
+    \lambda &= 10 \quad \text{(average number of students per hour)}, \\
+    k &= 5 \quad \text{(number of students we're interested in)}.
+\end{align*}
+
+The probability mass function (PMF) of the Poisson distribution is given by:
+\[
+P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}
+\]
+
+Plugging in the values:
+\[
+P(X = 5) = \frac{e^{-10} \times 10^5}{5!}
+\]
+
+\[
+P(X = 5) = \frac{e^{-10} \times 100000}{120}
+\]
+
+Calculating:
+\[
+P(X = 5) \approx \frac{0.0000454 \times 100000}{120}
+\]
+
+\[
+P(X = 5) \approx \frac{4.54}{120}
+\]
+
+\[
+P(X = 5) \approx 0.0378
+\]
+
+Therefore, the probability of having exactly 5 students visit the library in an hour is approximately 0.0378.
+
+**Cumulative Distribution Function**
+
+The cumulative distribution function (CDF) of the Poisson distribution gives the probability of having up to a certain number of events occur.
+
+Let's calculate the probability of having up to 5 students visit the library in an hour.
+
+Given:
+\[
+\lambda = 10 \quad \text{(average number of students per hour)}, \\
+k = 5 \quad \text{(number of students we're interested in)}.
+\]
+
+The cumulative distribution function (CDF) of the Poisson distribution is given by:
+\[
+P(X \leq k) = \sum_{i=0}^{k} \frac{e^{-\lambda} \lambda^i}{i!}
+\]
+
+Plugging in the values:
+\[
+P(X \leq 5) = \sum_{i=0}^{5} \frac{e^{-10} \times 10^i}{i!}
+\]
+
+Calculating:
+\[
+P(X \leq 5) = \frac{e^{-10} \times 10^0}{0!} + \frac{e^{-10} \times 10^1}{1!} + \frac{e^{-10} \times 10^2}{2!} + \frac{e^{-10} \times 10^3}{3!} + \frac{e^{-10} \times 10^4}{4!} + \frac{e^{-10} \times 10^5}{5!}
+\]
+
+\[
+P(X \leq 5) = e^{-10} + \frac{10e^{-10}}{1} + \frac{100e^{-10}}{2} + \frac{1000e^{-10}}{6} + \frac{10000e^{-10}}{24} + \frac{100000e^{-10}}{120}
+\]
+
+\[
+P(X \leq 5) \approx 0.0671
+\]
+
+Therefore, the probability of having up to 5 students visit the library in an hour is approximately 0.0671.
+
+```{r}
+#PMF in R
+lambda <- 10  # Average number of students visiting the library per hour
+k <- 5  # Number of students we're interested in
+
+# Calculate PMF for exactly 5 students
+pmf_5_students <- dpois(k, lambda)
+pmf_5_students
+```
+```{r}
+# Calculate CDF for up to 5 students
+cdf_up_to_5_students <- ppois(k, lambda)
+cdf_up_to_5_students
+```
+
+## Testing Large Samples for Poisson Distribution
+
+
+The Poisson distribution describes the probability of a certain number of events occurring in a fixed interval of time or space. It is often used to model the number of occurrences of rare events in a large population.
+
+### Testing Large Samples
+
+When dealing with large samples, we can use the normal approximation to the Poisson distribution due to the Central Limit Theorem (CLT). The CLT states that the sampling distribution of the sample mean will be approximately normally distributed for large sample sizes, regardless of the distribution of the population.
+
+### Test Statistic
+
+The test statistic for testing large samples for the Poisson distribution is given by:
+
+\[
+Z = \frac{\hat{\lambda} - \lambda_0}{\sqrt{\frac{\lambda_0}{n}}}
+\]
+
+where:
+- \( \hat{\lambda} \) is the sample mean,
+- \( \lambda_0 \) is the hypothesized mean under the null hypothesis,
+- \( n \) is the sample size.
+
+ *Example*
+
+Suppose we are interested in testing whether the average number of accidents at a particular intersection is different from 5 per day. We collect a large sample of accident data and find that the sample mean is \( \hat{\lambda} = 6 \) accidents per day.
+
+Let's perform the hypothesis test:
+
+- Null Hypothesis (\( H_0 \)): \( \lambda = \lambda_0 = 5 \)
+- Alternative Hypothesis (\( H_1 \)): \( \lambda \neq \lambda_0 \)
+
+Given \( n = 1000 \), we can use the test statistic formula to calculate the value of \( Z \).
+
+Given:
+\begin{align*}
+    \hat{\lambda} &= 6 \\
+    \lambda_0 &= 5 \\
+    n &\text{ is large}
+\end{align*}
+
+We can calculate the test statistic:
+\[
+Z = \frac{{6 - 5}}{{\sqrt{5}}} = \frac{1}{\sqrt{\frac{5}{1000}}}
+\]
+
+\[
+Z \approx \frac{1}{0.0707
+} \approx 14.14
+
+\]
+
+**Conclusion**
+
+Since the sample size is large, we can use the standard normal distribution to find the critical values. At a significance level of $\alpha = 0.05$, the critical values for a two-tailed test are $\pm 1.96$.
+
+Since $-1.96 < 14.14 < 1.96$, we fail to reject the null hypothesis.
+
+Therefore, there is not enough evidence to conclude that the average number of earthquakes per month is significantly different from 5.
+
+```{r}
+# Define parameters
+lambda_hat <- 6  # Sample mean
+lambda_0 <- 5  # Hypothesized mean under null hypothesis
+n <- 1000  # Sample size
+
+# Calculate test statistic
+Z <- (lambda_hat - lambda_0) / sqrt(lambda_0 / n)
+Z
+```
 

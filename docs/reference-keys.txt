@@ -7,3 +7,16 @@ the-neyman-pearson-lemma
 testing-and-estimation---large-vs.-small-samples
 central-limit-theorem-clt
 conceptual-explanation
+understanding-the-binomial-distribution
+testing-large-samples
+z-test-for-proportions
+estimation-of-parameters
+point-estimation-1
+interval-estimation
+small-sample-situations
+binomial-test
+chi-square-goodness-of-fit-test
+understanding-the-poisson-distribution
+testing-large-samples-for-poisson-distribution
+testing-large-samples-1
+test-statistic
