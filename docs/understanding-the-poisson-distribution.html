@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="testing-and-estimation---large-vs.-small-samples.html"/>
-
+<link rel="next" href="normal-contingency-tables.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -181,6 +181,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1.1" data-path="understanding-the-poisson-distribution.html"><a href="understanding-the-poisson-distribution.html#testing-large-samples-1"><i class="fa fa-check"></i><b>4.1.1</b> Testing Large Samples</a></li>
 <li class="chapter" data-level="4.1.2" data-path="understanding-the-poisson-distribution.html"><a href="understanding-the-poisson-distribution.html#test-statistic"><i class="fa fa-check"></i><b>4.1.2</b> Test Statistic</a></li>
 </ul></li>
+<li class="chapter" data-level="4.2" data-path="understanding-the-poisson-distribution.html"><a href="understanding-the-poisson-distribution.html#interval-estimation-for-poisson-distribution"><i class="fa fa-check"></i><b>4.2</b> Interval Estimation for Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="normal-contingency-tables.html"><a href="normal-contingency-tables.html"><i class="fa fa-check"></i><b>5</b> Normal Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="normal-contingency-tables.html"><a href="normal-contingency-tables.html#test-of-homogeneity"><i class="fa fa-check"></i><b>5.1</b> Test of Homogeneity</a></li>
+<li class="chapter" data-level="5.2" data-path="normal-contingency-tables.html"><a href="normal-contingency-tables.html#goodness-of-fit-test"><i class="fa fa-check"></i><b>5.2</b> Goodness-of-Fit Test</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -333,8 +339,77 @@ Z </p>
 <span id="cb9-7"><a href="understanding-the-poisson-distribution.html#cb9-7" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> (lambda_hat <span class="sc">-</span> lambda_0) <span class="sc">/</span> <span class="fu">sqrt</span>(lambda_0 <span class="sc">/</span> n)</span>
 <span id="cb9-8"><a href="understanding-the-poisson-distribution.html#cb9-8" aria-hidden="true" tabindex="-1"></a>Z</span></code></pre></div>
 <pre><code>## [1] 14.14214</code></pre>
-
 </div>
+</div>
+<div id="interval-estimation-for-poisson-distribution" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Interval Estimation for Poisson Distribution<a href="understanding-the-poisson-distribution.html#interval-estimation-for-poisson-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose we have a sample from a population that follows a Poisson distribution with parameter <span class="math inline">\(\lambda\)</span>. We want to construct a confidence interval for the true value of <span class="math inline">\(\lambda\)</span>.</p>
+<p><strong>Method</strong></p>
+<p>For large samples, we can use the normal approximation to the Poisson distribution to construct a confidence interval for <span class="math inline">\(\lambda\)</span>. The confidence interval is given by:</p>
+<p><span class="math display">\[
+\left( \hat{\lambda} \pm Z_{\alpha/2} \sqrt{\frac{\hat{\lambda}}{n}} \right)
+\]</span></p>
+where:
+<p><strong>Example</strong></p>
+<p>Suppose we have a sample of earthquake occurrences in a region over a certain period of time. We want to estimate the average number of earthquakes per month, denoted by <span class="math inline">\(\lambda\)</span>, using a confidence interval.</p>
+<p><em>Sample Information</em></p>
+<p>Given:
+<span class="math display">\[\begin{align*}
+    n &amp;= 50 \quad \text{(sample size)}, \\
+    \text{Total number of earthquakes observed} &amp;= 60.
+\end{align*}\]</span></p>
+<p><em>Method</em></p>
+<p>To construct a confidence interval for <span class="math inline">\(\lambda\)</span>, we’ll use the normal approximation to the Poisson distribution.</p>
+The confidence interval is given by:
+<span class="math display">\[
+\hat{\lambda} \pm z_{\alpha/2} \sqrt{\frac{\hat{\lambda}}{n}}
+\]</span>
+where:
+<p><em>Calculation</em></p>
+<p>Given:
+<span class="math display">\[
+\hat{\lambda} = \frac{\text{Total number of earthquakes observed}}{n} = \frac{60}{50} = 1.2
+\]</span>
+and using a 95% confidence level (<span class="math inline">\(\alpha = 0.05\)</span>), the critical value <span class="math inline">\(z_{\alpha/2}\)</span> is approximately 1.96.</p>
+<p>The margin of error is:
+<span class="math display">\[
+\text{Margin of Error} = 1.96 \times \sqrt{\frac{1.2}{50}} \approx 0.3036
+\]</span></p>
+<p><em>Confidence Interval</em></p>
+<p>Therefore, the 95% confidence interval for the average number of earthquakes per month is approximately:
+<span class="math display">\[
+1.2 \pm 0.3036 = (0.8963637, 1.503636)
+\]</span></p>
+<p><em>Conclusion</em></p>
+<p>We are 95% confident that the true average number of earthquakes per month in the region falls within the interval (0.8963637, 1.503636).</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="understanding-the-poisson-distribution.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Given data</span></span>
+<span id="cb11-2"><a href="understanding-the-poisson-distribution.html#cb11-2" aria-hidden="true" tabindex="-1"></a>total_earthquakes <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb11-3"><a href="understanding-the-poisson-distribution.html#cb11-3" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb11-4"><a href="understanding-the-poisson-distribution.html#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="understanding-the-poisson-distribution.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate sample mean</span></span>
+<span id="cb11-6"><a href="understanding-the-poisson-distribution.html#cb11-6" aria-hidden="true" tabindex="-1"></a>lambda_hat <span class="ot">&lt;-</span> total_earthquakes <span class="sc">/</span> sample_size</span>
+<span id="cb11-7"><a href="understanding-the-poisson-distribution.html#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="understanding-the-poisson-distribution.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate standard error</span></span>
+<span id="cb11-9"><a href="understanding-the-poisson-distribution.html#cb11-9" aria-hidden="true" tabindex="-1"></a>se <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(lambda_hat <span class="sc">/</span> sample_size)</span>
+<span id="cb11-10"><a href="understanding-the-poisson-distribution.html#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="understanding-the-poisson-distribution.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Critical value for 95% confidence level</span></span>
+<span id="cb11-12"><a href="understanding-the-poisson-distribution.html#cb11-12" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb11-13"><a href="understanding-the-poisson-distribution.html#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="understanding-the-poisson-distribution.html#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate margin of error</span></span>
+<span id="cb11-15"><a href="understanding-the-poisson-distribution.html#cb11-15" aria-hidden="true" tabindex="-1"></a>margin_error <span class="ot">&lt;-</span> z <span class="sc">*</span> se</span>
+<span id="cb11-16"><a href="understanding-the-poisson-distribution.html#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="understanding-the-poisson-distribution.html#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate confidence interval</span></span>
+<span id="cb11-18"><a href="understanding-the-poisson-distribution.html#cb11-18" aria-hidden="true" tabindex="-1"></a>lower_bound <span class="ot">&lt;-</span> lambda_hat <span class="sc">-</span> margin_error</span>
+<span id="cb11-19"><a href="understanding-the-poisson-distribution.html#cb11-19" aria-hidden="true" tabindex="-1"></a>upper_bound <span class="ot">&lt;-</span> lambda_hat <span class="sc">+</span> margin_error</span>
+<span id="cb11-20"><a href="understanding-the-poisson-distribution.html#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="understanding-the-poisson-distribution.html#cb11-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Print results</span></span>
+<span id="cb11-22"><a href="understanding-the-poisson-distribution.html#cb11-22" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Sample mean (lambda hat):&quot;</span>, lambda_hat, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Sample mean (lambda hat): 1.2</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="understanding-the-poisson-distribution.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Margin of error:&quot;</span>, margin_error, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Margin of error: 0.3036363</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="understanding-the-poisson-distribution.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;95% Confidence interval:&quot;</span>, lower_bound, <span class="st">&quot;-&quot;</span>, upper_bound, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 95% Confidence interval: 0.8963637 - 1.503636</code></pre>
+
 </div>
 </div>
             </section>
@@ -342,8 +417,8 @@ Z </p>
           </div>
         </div>
       </div>
-<a href="testing-and-estimation---large-vs.-small-samples.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="testing-and-estimation---large-vs.-small-samples.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="normal-contingency-tables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -374,7 +449,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/xadex01/Inferential_Statistics/edit/main/03-race.Rmd",
+"link": "https://github.com/xadex01/Inferential_Statistics/edit/main/Chapter-4.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -382,7 +457,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/xadex01/Inferential_Statistics/blob/main/03-race.Rmd",
+"link": "https://github.com/xadex01/Inferential_Statistics/blob/main/Chapter-4.Rmd",
 "text": null
 },
 "download": null,

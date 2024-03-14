@@ -1,0 +1,275 @@
+
+
+#  Normal Contingency Tables
+
+Contingency tables are used to summarize the relationship between two categorical variables. In a normal contingency table, the expected frequencies are calculated assuming that the variables are independent.
+
+**Normal Contingency Table Calculation**
+
+Suppose we have the following contingency table for two categorical variables:
+
+\[
+\begin{array}{c|cc|c}
+ & \text{Variable 1 (A)} & \text{Variable 1 (B)} & \text{Total} \\
+\hline
+\text{Variable 2 (X)} & a & b & a + b \\
+\text{Variable 2 (Y)} & c & d & c + d \\
+\hline
+\text{Total} & a + c & b + d & n
+\end{array}
+\]
+
+The expected frequency for each cell under the assumption of independence between the variables can be calculated as:
+\[
+E_{ij} = \frac{(a + c)(a + b)}{n}, \quad \text{for cell } (i, j)
+\]
+
+Now, let's calculate the expected frequencies for each cell:
+
+\[
+\begin{array}{c|cc|c}
+ & \text{Variable 1 (A)} & \text{Variable 1 (B)} & \text{Total} \\
+\hline
+\text{Variable 2 (X)} & \frac{(a + c)(a + b)}{n} & \frac{(a + c)(b + d)}{n} & a + b \\
+\text{Variable 2 (Y)} & \frac{(b + d)(a + b)}{n} & \frac{(b + d)(b + d)}{n} & c + d \\
+\hline
+\text{Total} & a + c & b + d & n
+\end{array}
+\]
+
+
+**Example**
+
+Suppose we have data on the smoking habits and lung cancer incidence in a population. We want to investigate whether there is a relationship between smoking and lung cancer.
+
+\[
+\begin{array}{|c|c|c|}
+\hline
+& \text{Smoker} & \text{Non-Smoker} \\
+\hline
+\text{Lung Cancer} & 50 & 100 \\
+\hline
+\text{No Lung Cancer} & 200 & 500 \\
+\hline
+\end{array}
+\]
+
+**Method**
+
+To test for independence between smoking and lung cancer, we'll calculate the expected frequencies under the assumption of independence.
+
+The expected frequency for a cell is given by:
+\[
+E_{ij} = \frac{{R_i \times C_j}}{{N}}
+\]
+where:
+\begin{itemize}
+    \item $E_{ij}$ is the expected frequency for cell $(i,j)$,
+    \item $R_i$ is the total count in row $i$,
+    \item $C_j$ is the total count in column $j$,
+    \item $N$ is the total count of observations.
+\end{itemize}
+
+**Calculation**
+
+Given:
+\[
+\begin{aligned}
+    &\text{Total observations (N)} = 850, \\
+    &\text{Total smokers} = 250, \\
+    &\text{Total non-smokers} = 600, \\
+    &\text{Total lung cancer cases} = 250, \\
+    &\text{Total cases of no lung cancer} = 600.
+\end{aligned}
+\]
+
+The expected frequency for the "Smoker, Lung Cancer" cell is:
+\[
+E_{\text{Smoker}, \text{Lung Cancer}} = \frac{{250 \times 250}}{{850}} = 73.53
+\]
+
+Similarly, we calculate the expected frequencies for the other cells.
+
+**Conclusion**
+
+Once we have calculated the expected frequencies, we can compare them to the observed frequencies to test for independence between smoking and lung cancer.
+
+
+## Test of Homogeneity
+
+
+**Example**
+
+The head of a surgery department at a university medical center was concerned that surgical residents in training applied unnecessary blood transfusions at a different rate than the more experienced attending physicians. Therefore, he ordered a study of the 49 Attending Physicians and 71 Residents in Training with privileges at the hospital. For each of the 120 surgeons, the number of blood transfusions prescribed unnecessarily in a one-year period was recorded. Based on the number recorded, a surgeon was identified as either prescribing unnecessary blood transfusions Frequently, Occasionally, Rarely, or Never. Here's a summary table (or "contingency table") of the resulting data:
+
+\[
+\begin{array}{c|c|c|c|c|c}
+\text{Physician} & \text{Frequent} & \text{Occasionally} & \text{Rarely} & \text{Never} & \text{Total} \\
+\hline
+\text{Attending} & 2 \, (4.1\%) & 3 \, (6.1\%) & 31 \, (63.3\%) & 13 \, (26.5\%) & 49 \\
+\text{Resident} & 15 \, (21.1\%) & 28 \, (39.4\%) & 23 \, (32.4\%) & 5 \, (7.0\%) & 71 \\
+\hline
+\text{Total} & 17 & 31 & 54 & 18 & 120 \\
+
+\end{array}
+\]
+
+We are interested in testing the null hypothesis:
+\[ H_0: \text{Attending Physicians and Residents in Training are distributed equally among the various unnecessary blood transfusion categories} \]
+against the alternative hypothesis:
+\[ H_1: \text{Attending Physicians and Residents in Training are not distributed equally among the various unnecessary blood transfusion categories} \]
+
+The observed data were given to us in the table above. So, the next thing we need to do is find the expected counts for each cell of the table. It is in the calculation of the expected values that you can readily see why we have $(2-1)(4-1) = 3$ degrees of freedom in this case. That's because we only have to calculate three of the cells directly.
+
+
+\[
+\begin{array}{c|c|c|c|c|c}
+\text{Physician} & \text{Frequent} & \text{Occasionally} & \text{Rarely} & \text{Never} & \text{Total} \\
+\hline
+\text{Attending} & 6.942= (\frac{17}{120}49) & 12.658=(\frac{31}{120}49) & 22.05=(\frac{54}{120}49) & - & 49 \\
+\text{Resident} & - & - & - & - & 71 \\
+\hline
+\text{Total} & 17 & 31 & 54 & 18 & 120 \\
+
+\end{array}
+\]
+
+Once we do that, the remaining five cells can be calculated by way of subtraction:
+
+\[
+\begin{array}{c|c|c|c|c|c}
+\text{Physician} & \text{Frequent} & \text{Occasionally} & \text{Rarely} & \text{Never} & \text{Total} \\
+\hline
+\text{Attending} & 6.942 & 12.658 & 22.05 & 7.35 & 49 \\
+\text{Resident} & 10.058 & 18.342 & 31.95 & 10.65 & 71 \\
+\hline
+\text{Total} & 17 & 31 & 54 & 18 & 120 \\
+
+\end{array}
+\]
+
+Now that we have the observed and expected counts, calculating the chi-square statistic is a straightforward exercise:
+
+\[
+Q = \frac{(2-6.942)^2}{6.942} + \frac{(3-12.658)^2}{12.658} + \frac{(31-22.05)^2}{22.05} + \\
+\frac{(13-7.35)^2}{7.35} + \frac{(15-10.058)^2}{10.058} + \frac{(28-18.342)^2}{18.342} + \\  \frac{(23-31.95)^2}{31.95} + \frac{(5-10.65)^2}{10.65}
+\]
+
+The chi-square test tells us to reject the null hypothesis, at the 0.05 level, if $Q$ is greater than a chi-square random variable with 3 degrees of freedom, that is, if $Q > \chi^2_{0.05, 3}$. Because $Q = 39.88$, and $\chi^2_{0.05, 3} = 7.815$, we reject the null hypothesis. There is sufficient evidence at the 0.05 level to conclude that the distribution of unnecessary transfusions differs among attending physicians and residents.
+
+
+##  Goodness-of-Fit Test
+
+The Goodness-of-Fit test is a statistical test used to determine whether an observed frequency distribution fits a theoretical distribution. It is commonly used to compare observed data with expected frequencies from a theoretical model.
+
+**Hypotheses**
+
+Let $O_i$ denote the observed frequency for category $i$, and $E_i$ denote the expected frequency for category $i$ under the null hypothesis.
+
+The null hypothesis ($H_0$) is that the observed frequencies fit the theoretical distribution:
+\[ H_0: O_i = E_i \text{ for all categories} \]
+
+The alternative hypothesis ($H_1$) is that the observed frequencies do not fit the theoretical distribution:
+\[ H_1: \text{At least one } O_i \text{ differs significantly from } E_i \]
+
+**Test Statistic**
+
+The test statistic for the Goodness-of-Fit test is typically based on the Chi-square ($\chi^2$) distribution and is calculated as follows:
+\[ \chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i} \]
+
+where the sum is taken over all categories.
+
+**Worked Example**
+
+Suppose we have a six-sided die and we want to test whether it is fair. We roll the die 120 times and record the following frequencies for each face:
+
+\[
+\begin{array}{cc}
+\toprule
+\text{Face} & \text{Observed Frequency} \\
+\midrule
+1 & 20 \\
+2 & 18 \\
+3 & 25 \\
+4 & 22 \\
+5 & 17 \\
+6 & 18 \\
+\bottomrule
+\end{array}
+\]
+
+To test whether the observed frequencies fit the expected frequencies for a fair die, we calculate the expected frequency for each face. Since the die is fair, we expect each face to occur with equal probability, i.e., $E_i = \frac{120}{6} = 20$ for all faces.
+
+Now, we calculate the test statistic:
+\[ \chi^2 = \frac{(20 - 20)^2}{20} + \frac{(18 - 20)^2}{20} + \frac{(25 - 20)^2}{20} + \frac{(22 - 20)^2}{20} + \frac{(17 - 20)^2}{20} + \frac{(18 - 20)^2}{20} \]
+
+\[ = \frac{0}{20} + \frac{4}{20} + \frac{25}{20} + \frac{4}{20} + \frac{9}{20} + \frac{4}{20} \]
+
+\[ = \frac{42}{20} = 2.1 \]
+
+**Conclusion**
+
+With 5 degrees of freedom, at a significance level of 0.05, the critical value of $\chi^2$ is approximately 11.07. Since our calculated $\chi^2$ value (2.1) is less than the critical value, we fail to reject the null hypothesis. Therefore, we conclude that the observed frequencies are consistent with those expected for a fair die.
+
+
+
+
+**Additional Example **
+
+Suppose the admissions office at State University Gadau claims that the distribution of incoming students across departments is 30\% in Business, 40\% in Engineering, and 30\% in Liberal Arts. To verify this claim, they collect data on 300 incoming students and observe the following distribution:
+
+\begin{itemize}
+    \item Business: 90 students
+    \item Engineering: 110 students
+    \item Liberal Arts: 100 students
+\end{itemize}
+
+We want to test whether the observed distribution of incoming students matches the claimed distribution.
+
+**Hypotheses**
+
+\begin{itemize}
+    \item Null Hypothesis ($H_0$): The observed distribution of incoming students matches the claimed distribution.
+    \item Alternative Hypothesis ($H_1$): The observed distribution of incoming students does not match the claimed distribution.
+\end{itemize}
+
+**Test Statistic**
+
+We will use the chi-square test statistic to assess the goodness of fit. The formula for the chi-square test statistic is:
+
+\[
+\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
+\]
+
+where:
+\begin{itemize}
+    \item $O_i$ = observed frequency of the $i$th category
+    \item $E_i$ = expected frequency of the $i$th category under the null hypothesis
+\end{itemize}
+
+**Calculation**
+
+Under the null hypothesis, the expected frequency of students in each department can be calculated based on the claimed distribution. Therefore, we expect:
+\begin{itemize}
+    \item Business: $0.30 \times 300 = 90$ students
+    \item Engineering: $0.40 \times 300 = 120$ students
+    \item Liberal Arts: $0.30 \times 300 = 90$ students
+\end{itemize}
+
+We will then calculate the chi-square test statistic using the observed and expected frequencies.
+
+\[
+\begin{aligned}
+\chi^2 &= \frac{(90 - 90)^2}{90} + \frac{(110 - 120)^2}{120} + \frac{(100 - 90)^2}{90} \\
+&= \frac{0^2}{90} + \frac{(-10)^2}{120} + \frac{10^2}{90} \\
+&= \frac{0}{90} + \frac{100}{120} + \frac{100}{90} \\
+&= \frac{100}{120} + \frac{100}{90} \\
+&\approx 1.11
+\end{aligned}
+\]
+
+Since the calculated chi-square value is approximately 1.11, and assuming a significance level of 0.05, we fail to reject the null hypothesis. Thus, we conclude that there is no significant difference between the observed and expected distributions of incoming students across departments, supporting the admissions office's claim.
+
+
+
+

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Normal Contingency Tables | Inferential Statistics</title>
+  <meta name="description" content="Chapter 5 Normal Contingency Tables | Inferential Statistics" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Normal Contingency Tables | Inferential Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Normal Contingency Tables | Inferential Statistics" />
+  
+  
+  
+
+<meta name="author" content="AbdulHafiz Abba" />
+
+
+<meta name="date" content="2024-03-14" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="understanding-the-poisson-distribution.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Inferential Statistics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Point Estimation</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#definitions"><i class="fa fa-check"></i><b>1.1.1</b> Definitions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#maximum-likelihood-estimation"><i class="fa fa-check"></i><b>1.2</b> Maximum Likelihood Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="neyman-pearson-lemma.html"><a href="neyman-pearson-lemma.html"><i class="fa fa-check"></i><b>2</b> Neyman-Pearson Lemma</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="neyman-pearson-lemma.html"><a href="neyman-pearson-lemma.html#the-neyman-pearson-lemma"><i class="fa fa-check"></i><b>2.1</b> The Neyman Pearson Lemma</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html"><i class="fa fa-check"></i><b>3</b> Testing and Estimation - Large vs. Small Samples</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#central-limit-theorem-clt"><i class="fa fa-check"></i><b>3.1</b> Central Limit Theorem (CLT)</a></li>
+<li class="chapter" data-level="3.2" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#conceptual-explanation"><i class="fa fa-check"></i><b>3.2</b> Conceptual Explanation</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#understanding-the-binomial-distribution"><i class="fa fa-check"></i><b>3.2.1</b> Understanding the Binomial Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#testing-large-samples"><i class="fa fa-check"></i><b>3.3</b> Testing Large Samples</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#z-test-for-proportions"><i class="fa fa-check"></i><b>3.3.1</b> Z-Test for Proportions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#estimation-of-parameters"><i class="fa fa-check"></i><b>3.4</b> Estimation of Parameters</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#point-estimation-1"><i class="fa fa-check"></i><b>3.4.1</b> Point Estimation</a></li>
+<li class="chapter" data-level="3.4.2" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#interval-estimation"><i class="fa fa-check"></i><b>3.4.2</b> Interval Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#small-sample-situations"><i class="fa fa-check"></i><b>3.5</b> Small Sample Situations</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#binomial-test"><i class="fa fa-check"></i><b>3.5.1</b> Binomial Test</a></li>
+<li class="chapter" data-level="3.5.2" data-path="testing-and-estimation---large-vs.-small-samples.html"><a href="testing-and-estimation---large-vs.-small-samples.html#chi-square-goodness-of-fit-test"><i class="fa fa-check"></i><b>3.5.2</b> Chi-Square Goodness-of-Fit Test</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="understanding-the-poisson-distribution.html"><a href="understanding-the-poisson-distribution.html"><i class="fa fa-check"></i><b>4</b> Understanding the Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="understanding-the-poisson-distribution.html"><a href="understanding-the-poisson-distribution.html#testing-large-samples-for-poisson-distribution"><i class="fa fa-check"></i><b>4.1</b> Testing Large Samples for Poisson Distribution</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="understanding-the-poisson-distribution.html"><a href="understanding-the-poisson-distribution.html#testing-large-samples-1"><i class="fa fa-check"></i><b>4.1.1</b> Testing Large Samples</a></li>
+<li class="chapter" data-level="4.1.2" data-path="understanding-the-poisson-distribution.html"><a href="understanding-the-poisson-distribution.html#test-statistic"><i class="fa fa-check"></i><b>4.1.2</b> Test Statistic</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="understanding-the-poisson-distribution.html"><a href="understanding-the-poisson-distribution.html#interval-estimation-for-poisson-distribution"><i class="fa fa-check"></i><b>4.2</b> Interval Estimation for Poisson Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="normal-contingency-tables.html"><a href="normal-contingency-tables.html"><i class="fa fa-check"></i><b>5</b> Normal Contingency Tables</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="normal-contingency-tables.html"><a href="normal-contingency-tables.html#test-of-homogeneity"><i class="fa fa-check"></i><b>5.1</b> Test of Homogeneity</a></li>
+<li class="chapter" data-level="5.2" data-path="normal-contingency-tables.html"><a href="normal-contingency-tables.html#goodness-of-fit-test"><i class="fa fa-check"></i><b>5.2</b> Goodness-of-Fit Test</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Inferential Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="normal-contingency-tables" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Normal Contingency Tables<a href="normal-contingency-tables.html#normal-contingency-tables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Contingency tables are used to summarize the relationship between two categorical variables. In a normal contingency table, the expected frequencies are calculated assuming that the variables are independent.</p>
+<p><strong>Normal Contingency Table Calculation</strong></p>
+<p>Suppose we have the following contingency table for two categorical variables:</p>
+<p><span class="math display">\[
+\begin{array}{c|cc|c}
+&amp; \text{Variable 1 (A)} &amp; \text{Variable 1 (B)} &amp; \text{Total} \\
+\hline
+\text{Variable 2 (X)} &amp; a &amp; b &amp; a + b \\
+\text{Variable 2 (Y)} &amp; c &amp; d &amp; c + d \\
+\hline
+\text{Total} &amp; a + c &amp; b + d &amp; n
+\end{array}
+\]</span></p>
+<p>The expected frequency for each cell under the assumption of independence between the variables can be calculated as:
+<span class="math display">\[
+E_{ij} = \frac{(a + c)(a + b)}{n}, \quad \text{for cell } (i, j)
+\]</span></p>
+<p>Now, let’s calculate the expected frequencies for each cell:</p>
+<p><span class="math display">\[
+\begin{array}{c|cc|c}
+&amp; \text{Variable 1 (A)} &amp; \text{Variable 1 (B)} &amp; \text{Total} \\
+\hline
+\text{Variable 2 (X)} &amp; \frac{(a + c)(a + b)}{n} &amp; \frac{(a + c)(b + d)}{n} &amp; a + b \\
+\text{Variable 2 (Y)} &amp; \frac{(b + d)(a + b)}{n} &amp; \frac{(b + d)(b + d)}{n} &amp; c + d \\
+\hline
+\text{Total} &amp; a + c &amp; b + d &amp; n
+\end{array}
+\]</span></p>
+<p><strong>Example</strong></p>
+<p>Suppose we have data on the smoking habits and lung cancer incidence in a population. We want to investigate whether there is a relationship between smoking and lung cancer.</p>
+<p><span class="math display">\[
+\begin{array}{|c|c|c|}
+\hline
+&amp; \text{Smoker} &amp; \text{Non-Smoker} \\
+\hline
+\text{Lung Cancer} &amp; 50 &amp; 100 \\
+\hline
+\text{No Lung Cancer} &amp; 200 &amp; 500 \\
+\hline
+\end{array}
+\]</span></p>
+<p><strong>Method</strong></p>
+<p>To test for independence between smoking and lung cancer, we’ll calculate the expected frequencies under the assumption of independence.</p>
+The expected frequency for a cell is given by:
+<span class="math display">\[
+E_{ij} = \frac{{R_i \times C_j}}{{N}}
+\]</span>
+where:
+<p><strong>Calculation</strong></p>
+<p>Given:
+<span class="math display">\[
+\begin{aligned}
+    &amp;\text{Total observations (N)} = 850, \\
+    &amp;\text{Total smokers} = 250, \\
+    &amp;\text{Total non-smokers} = 600, \\
+    &amp;\text{Total lung cancer cases} = 250, \\
+    &amp;\text{Total cases of no lung cancer} = 600.
+\end{aligned}
+\]</span></p>
+<p>The expected frequency for the “Smoker, Lung Cancer” cell is:
+<span class="math display">\[
+E_{\text{Smoker}, \text{Lung Cancer}} = \frac{{250 \times 250}}{{850}} = 73.53
+\]</span></p>
+<p>Similarly, we calculate the expected frequencies for the other cells.</p>
+<p><strong>Conclusion</strong></p>
+<p>Once we have calculated the expected frequencies, we can compare them to the observed frequencies to test for independence between smoking and lung cancer.</p>
+<div id="test-of-homogeneity" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Test of Homogeneity<a href="normal-contingency-tables.html#test-of-homogeneity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Example</strong></p>
+<p>The head of a surgery department at a university medical center was concerned that surgical residents in training applied unnecessary blood transfusions at a different rate than the more experienced attending physicians. Therefore, he ordered a study of the 49 Attending Physicians and 71 Residents in Training with privileges at the hospital. For each of the 120 surgeons, the number of blood transfusions prescribed unnecessarily in a one-year period was recorded. Based on the number recorded, a surgeon was identified as either prescribing unnecessary blood transfusions Frequently, Occasionally, Rarely, or Never. Here’s a summary table (or “contingency table”) of the resulting data:</p>
+[
+<span class="math display">\[\begin{array}{c|c|c|c|c|c}
+\text{Physician} &amp; \text{Frequent} &amp; \text{Occasionally} &amp; \text{Rarely} &amp; \text{Never} &amp; \text{Total} \\
+\hline
+\text{Attending} &amp; 2 \, (4.1\%) &amp; 3 \, (6.1\%) &amp; 31 \, (63.3\%) &amp; 13 \, (26.5\%) &amp; 49 \\
+\text{Resident} &amp; 15 \, (21.1\%) &amp; 28 \, (39.4\%) &amp; 23 \, (32.4\%) &amp; 5 \, (7.0\%) &amp; 71 \\
+\hline
+\text{Total} &amp; 17 &amp; 31 &amp; 54 &amp; 18 &amp; 120 \\
+
+\end{array}\]</span>
+<p>]</p>
+<p>We are interested in testing the null hypothesis:
+<span class="math display">\[ H_0: \text{Attending Physicians and Residents in Training are distributed equally among the various unnecessary blood transfusion categories} \]</span>
+against the alternative hypothesis:
+<span class="math display">\[ H_1: \text{Attending Physicians and Residents in Training are not distributed equally among the various unnecessary blood transfusion categories} \]</span></p>
+<p>The observed data were given to us in the table above. So, the next thing we need to do is find the expected counts for each cell of the table. It is in the calculation of the expected values that you can readily see why we have <span class="math inline">\((2-1)(4-1) = 3\)</span> degrees of freedom in this case. That’s because we only have to calculate three of the cells directly.</p>
+[
+<span class="math display">\[\begin{array}{c|c|c|c|c|c}
+\text{Physician} &amp; \text{Frequent} &amp; \text{Occasionally} &amp; \text{Rarely} &amp; \text{Never} &amp; \text{Total} \\
+\hline
+\text{Attending} &amp; 6.942= (\frac{17}{120}49) &amp; 12.658=(\frac{31}{120}49) &amp; 22.05=(\frac{54}{120}49) &amp; - &amp; 49 \\
+\text{Resident} &amp; - &amp; - &amp; - &amp; - &amp; 71 \\
+\hline
+\text{Total} &amp; 17 &amp; 31 &amp; 54 &amp; 18 &amp; 120 \\
+
+\end{array}\]</span>
+<p>]</p>
+<p>Once we do that, the remaining five cells can be calculated by way of subtraction:</p>
+[
+<span class="math display">\[\begin{array}{c|c|c|c|c|c}
+\text{Physician} &amp; \text{Frequent} &amp; \text{Occasionally} &amp; \text{Rarely} &amp; \text{Never} &amp; \text{Total} \\
+\hline
+\text{Attending} &amp; 6.942 &amp; 12.658 &amp; 22.05 &amp; 7.35 &amp; 49 \\
+\text{Resident} &amp; 10.058 &amp; 18.342 &amp; 31.95 &amp; 10.65 &amp; 71 \\
+\hline
+\text{Total} &amp; 17 &amp; 31 &amp; 54 &amp; 18 &amp; 120 \\
+
+\end{array}\]</span>
+<p>]</p>
+<p>Now that we have the observed and expected counts, calculating the chi-square statistic is a straightforward exercise:</p>
+<p><span class="math display">\[
+Q = \frac{(2-6.942)^2}{6.942} + \frac{(3-12.658)^2}{12.658} + \frac{(31-22.05)^2}{22.05} + \\
+\frac{(13-7.35)^2}{7.35} + \frac{(15-10.058)^2}{10.058} + \frac{(28-18.342)^2}{18.342} + \\  \frac{(23-31.95)^2}{31.95} + \frac{(5-10.65)^2}{10.65}
+\]</span></p>
+<p>The chi-square test tells us to reject the null hypothesis, at the 0.05 level, if <span class="math inline">\(Q\)</span> is greater than a chi-square random variable with 3 degrees of freedom, that is, if <span class="math inline">\(Q &gt; \chi^2_{0.05, 3}\)</span>. Because <span class="math inline">\(Q = 39.88\)</span>, and <span class="math inline">\(\chi^2_{0.05, 3} = 7.815\)</span>, we reject the null hypothesis. There is sufficient evidence at the 0.05 level to conclude that the distribution of unnecessary transfusions differs among attending physicians and residents.</p>
+</div>
+<div id="goodness-of-fit-test" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Goodness-of-Fit Test<a href="normal-contingency-tables.html#goodness-of-fit-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Goodness-of-Fit test is a statistical test used to determine whether an observed frequency distribution fits a theoretical distribution. It is commonly used to compare observed data with expected frequencies from a theoretical model.</p>
+<p><strong>Hypotheses</strong></p>
+<p>Let <span class="math inline">\(O_i\)</span> denote the observed frequency for category <span class="math inline">\(i\)</span>, and <span class="math inline">\(E_i\)</span> denote the expected frequency for category <span class="math inline">\(i\)</span> under the null hypothesis.</p>
+<p>The null hypothesis (<span class="math inline">\(H_0\)</span>) is that the observed frequencies fit the theoretical distribution:
+<span class="math display">\[ H_0: O_i = E_i \text{ for all categories} \]</span></p>
+<p>The alternative hypothesis (<span class="math inline">\(H_1\)</span>) is that the observed frequencies do not fit the theoretical distribution:
+<span class="math display">\[ H_1: \text{At least one } O_i \text{ differs significantly from } E_i \]</span></p>
+<p><strong>Test Statistic</strong></p>
+<p>The test statistic for the Goodness-of-Fit test is typically based on the Chi-square (<span class="math inline">\(\chi^2\)</span>) distribution and is calculated as follows:
+<span class="math display">\[ \chi^2 = \sum_{i} \frac{(O_i - E_i)^2}{E_i} \]</span></p>
+<p>where the sum is taken over all categories.</p>
+<p><strong>Worked Example</strong></p>
+<p>Suppose we have a six-sided die and we want to test whether it is fair. We roll the die 120 times and record the following frequencies for each face:</p>
+<p><span class="math display">\[
+\begin{array}{cc}
+\toprule
+\text{Face} &amp; \text{Observed Frequency} \\
+\midrule
+1 &amp; 20 \\
+2 &amp; 18 \\
+3 &amp; 25 \\
+4 &amp; 22 \\
+5 &amp; 17 \\
+6 &amp; 18 \\
+\bottomrule
+\end{array}
+\]</span></p>
+<p>To test whether the observed frequencies fit the expected frequencies for a fair die, we calculate the expected frequency for each face. Since the die is fair, we expect each face to occur with equal probability, i.e., <span class="math inline">\(E_i = \frac{120}{6} = 20\)</span> for all faces.</p>
+<p>Now, we calculate the test statistic:
+<span class="math display">\[ \chi^2 = \frac{(20 - 20)^2}{20} + \frac{(18 - 20)^2}{20} + \frac{(25 - 20)^2}{20} + \frac{(22 - 20)^2}{20} + \frac{(17 - 20)^2}{20} + \frac{(18 - 20)^2}{20} \]</span></p>
+<p><span class="math display">\[ = \frac{0}{20} + \frac{4}{20} + \frac{25}{20} + \frac{4}{20} + \frac{9}{20} + \frac{4}{20} \]</span></p>
+<p><span class="math display">\[ = \frac{42}{20} = 2.1 \]</span></p>
+<p><strong>Conclusion</strong></p>
+<p>With 5 degrees of freedom, at a significance level of 0.05, the critical value of <span class="math inline">\(\chi^2\)</span> is approximately 11.07. Since our calculated <span class="math inline">\(\chi^2\)</span> value (2.1) is less than the critical value, we fail to reject the null hypothesis. Therefore, we conclude that the observed frequencies are consistent with those expected for a fair die.</p>
+<p><strong>Additional Example </strong></p>
+<p>Suppose the admissions office at State University Gadau claims that the distribution of incoming students across departments is 30% in Business, 40% in Engineering, and 30% in Liberal Arts. To verify this claim, they collect data on 300 incoming students and observe the following distribution:</p>
+<p>We want to test whether the observed distribution of incoming students matches the claimed distribution.</p>
+<p><strong>Hypotheses</strong></p>
+<p><strong>Test Statistic</strong></p>
+<p>We will use the chi-square test statistic to assess the goodness of fit. The formula for the chi-square test statistic is:</p>
+<p><span class="math display">\[
+\chi^2 = \sum \frac{(O_i - E_i)^2}{E_i}
+\]</span></p>
+where:
+<p><strong>Calculation</strong></p>
+Under the null hypothesis, the expected frequency of students in each department can be calculated based on the claimed distribution. Therefore, we expect:
+<p>We will then calculate the chi-square test statistic using the observed and expected frequencies.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\chi^2 &amp;= \frac{(90 - 90)^2}{90} + \frac{(110 - 120)^2}{120} + \frac{(100 - 90)^2}{90} \\
+&amp;= \frac{0^2}{90} + \frac{(-10)^2}{120} + \frac{10^2}{90} \\
+&amp;= \frac{0}{90} + \frac{100}{120} + \frac{100}{90} \\
+&amp;= \frac{100}{120} + \frac{100}{90} \\
+&amp;\approx 1.11
+\end{aligned}
+\]</span></p>
+<p>Since the calculated chi-square value is approximately 1.11, and assuming a significance level of 0.05, we fail to reject the null hypothesis. Thus, we conclude that there is no significant difference between the observed and expected distributions of incoming students across departments, supporting the admissions office’s claim.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="understanding-the-poisson-distribution.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/xadex01/Inferential_Statistics/edit/main/Chapter-5.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/xadex01/Inferential_Statistics/blob/main/Chapter-5.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

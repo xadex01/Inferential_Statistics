@@ -20,3 +20,7 @@ understanding-the-poisson-distribution
 testing-large-samples-for-poisson-distribution
 testing-large-samples-1
 test-statistic
+interval-estimation-for-poisson-distribution
+normal-contingency-tables
+test-of-homogeneity
+goodness-of-fit-test
